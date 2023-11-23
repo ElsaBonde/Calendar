@@ -6,14 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
     <script src="main.js"></script>
-    <script src="js/calender.js"></script>
+    <script src="js/calendar.js" defer></script>
     <script src="js/today.js"></script>
     <script src="js/todo.js"></script>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
+    <header>Linus's Calendar</header>
 
+    <div class="container-flex">
+      <aside>
+        <div class="title-aside">
+        <p class="activeMonth">
+          November <span class="activeYear"> 2023</span>
+        </p>
+        <p id="prevMonth" class="fas fa-chevron-left"> <span id="nextMonth" class="fas fa-chevron-right"></span></p>
+      </div>
+      <div id="clock">
+      </div>
+        <div class="today-container">
+          <div class="today-title">
+            <p class="p-today">
+              Today <span id="todayNumbers"></span>
+            </p>
+            <p class="weather">JS</p>
+          </div>
+          <div class="stuff-to-do">hämtas med js</div>
+          <div class="stuff-to-do">hämtas med js</div>
+          <div class="stuff-to-do">hämtas med js</div>
+        </div>
+        <div class="createToDo">
+          <h2 class="newToDo">Create new to-do:</h2>
+          <label for="text-input">Title:</label>
+          <input type="text" id="text-input" class="inputStyles" name="text-input" />
+          <label for="date-input">Date:</label>
+          <input type="date" id="date-input" class="inputStyles" name="date-input" />
+          <label for="time-input">Time:</label>
+          <input type="time" id="time-input" class="inputStyles" name="time-input" />
+          <button class="add-todo">Add to-do +</button>
+        </div>
+      </aside>
 
-   
+      <main>
+        <div class="wrapper">
+            <p class="current-date"></p>
+          <div class="calendar">
+            <ul class="weeks">
+              <li>MON</li>
+              <li>TUE</li>
+              <li>WED</li>
+              <li>THU</li>
+              <li>FRI</li>
+              <li>SAT</li>
+              <li>SUN</li>
+            </ul>
+            <ul class="days"></ul>
+          </div>
+        </div>
+      </main>
   </body>
 </html>
