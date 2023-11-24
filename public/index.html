@@ -15,7 +15,6 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
     />
-    <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -42,7 +41,7 @@
         <p class="activeMonth">
           November <span class="activeYear"> 2023</span>
         </p>
-        <p id="prevMonth" class="fas fa-chevron-left"> <span id="nextMonth" class="fas fa-chevron-right"></span></p>
+        <p id="prevMonth" class="fa fas fa-chevron-left"> <span id="nextMonth" class="fa fas fa-chevron-right"></span></p>
       </div>
       <div id="clock">
       </div>
@@ -53,9 +52,7 @@
             </p>
             <p class="weather">JS</p>
           </div>
-          <div class="stuff-to-do">hämtas med js</div>
-          <div class="stuff-to-do">hämtas med js</div>
-          <div class="stuff-to-do">hämtas med js</div>
+          <ul id="eventList" style="list-style: none;"></ul>
         </div>
         <button onclick="openModal()">Add To do +</button>
       </aside>
@@ -89,7 +86,7 @@
           <label for="timeToDo">Title</label>
           <input type="time" id="timeToDo" required />
         </form>
-        <input type="submit" form="todoForm" value="Add" />
+        <input type="submit" form="todoForm" value="Add" onclick="addEvent()"/>
       </div>
     </div>
   </body>
