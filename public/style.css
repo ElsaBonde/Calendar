@@ -17,19 +17,21 @@ header {
 }
 
 .container-flex {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 27% 73%;
+  grid-template-rows: 10% 90%;
   padding: 1rem;
 }
 
 /* Här börjar aside */
 aside {
-  flex: 1;
+  grid-column: 1;
   display: flex;
   flex-direction: column;
 }
 
 .title-aside {
+  grid-row: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -67,6 +69,7 @@ aside {
 }
 
 .today-container {
+    grid-row: 2;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 0.7rem;
   padding: 0.7rem;
@@ -85,8 +88,8 @@ aside {
 }
 
 .newToDo {
-    margin-bottom: 0.4rem;
-    font-weight: normal;
+  margin-bottom: 0.4rem;
+  font-weight: normal;
 }
 
 .p-today {
@@ -110,24 +113,22 @@ aside {
   margin-top: 1rem;
 }
 
-
-
 /* Här börjar MAIN */
 
 main {
-  flex: 3;
+    grid-row: 1 /span 2;
 }
 
 .weeks {
   font-size: 1.875rem;
   color: #fbd5fc;
   height: 3.75rem;
-}
+  grid-row: 1;
+  } 
 
 .days {
-  font-size: 0.9375rem;
+    grid-row: 2;
 }
-
 .days li {
   z-index: 1;
   cursor: pointer;
@@ -145,6 +146,12 @@ main {
 
 .calendar .weeks li {
   font-weight: 500;
+}
+
+
+.weeks li {
+  flex-grow: 1;
+  text-align: center;
 }
 
 .days li:hover {
@@ -186,3 +193,102 @@ main {
   background: rgb(158, 103, 158);
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.5);
 }
+
+@media screen and (max-width: 360px) {
+  .container-flex {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.2rem;
+  }
+
+  header {
+    font-size: 1.8rem;
+  }
+
+  /* aside startar här */
+  aside {
+    order: 3;
+  }
+
+  .title-aside {
+    order: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .activeMonth {
+    font-size: 1.3rem;
+  }
+  #prevMonth {
+    font-size: 1.1rem;
+    margin-top: auto;
+  }
+
+
+
+
+  /* main startar här  */
+  main {
+    order: 2;
+    margin-bottom: 1rem;
+  }
+
+  .weeks {
+    font-size: 0.7rem;
+    height: 1.1rem;
+  }
+  .days,
+  .weeks {
+    padding: 0;
+  }
+  .days {
+    font-size: 0.6rem;
+    text-align: center;
+  }
+
+  .calendar ul li {
+    height: 2.8rem;
+    border-radius: 50%;
+  }
+
+  .calendar .days li {
+    padding-top: 0.74rem;
+  }
+}
+
+
+/* Screen 1050px ner till 701px */
+
+@media screen and (max-width: 1270px) and (min-width: 801px) {
+  .weeks li {
+    font-size: 20px;
+  }
+
+  .calendar ul li {
+    width: calc(100% / 7);
+    position: relative;
+    height: 6rem;
+  }
+  .activeMonth {
+    font-size: 1.5rem;
+  }
+  #prevMonth {
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+  }
+
+}
+  
+
+@media screen and (max-width: 800px) and (min-width: 501px) {
+  .weeks li {
+    font-size: 15px;
+  }
+
+  .calendar ul li {
+    width: calc(100% / 7);
+    position: relative;
+    height: 5rem;
+  }
+
+}
+  
