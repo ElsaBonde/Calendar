@@ -1,7 +1,7 @@
 /**Open modal function */
 
-
 function openModal() {
+	console.log("openModal function is called!");
 	document.getElementById("todoModal").style.display = "flex"; // Change 'flex' to 'block' if you prefer
 }
 
@@ -17,7 +17,6 @@ window.onclick = function (event) {
 		modal.style.display = "none";
 	}
 };
-
 
 function addEvent() {
 	// Get values from the form
@@ -66,6 +65,3 @@ function loadEvents() {
 	var existingEvents = JSON.parse(localStorage.getItem("events")) || [];
 	updateEventList(existingEvents);
 }
-
-// Call loadEvents when the page loads to display existing events
-window.onload = loadEvents;
