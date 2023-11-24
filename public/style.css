@@ -48,7 +48,7 @@ aside {
 #prevMonth {
   font-size: 1.3rem;
   color: white;
-  margin-top: 15px;
+  margin-top: 0.9375rem;
 }
 
 #clock {
@@ -119,20 +119,20 @@ main {
 }
 
 .weeks {
-  font-size: 30px;
+  font-size: 1.875rem;
   color: #fbd5fc;
-  height: 60px;
+  height: 3.75rem;
 }
 
 .days {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .days li {
   z-index: 1;
   cursor: pointer;
-  margin-top: 20px;
-  border: 3px solid rgb(34, 34, 34);
+  margin-top: 1.25rem;
+  border: 0.1875rem solid rgb(34, 34, 34);
   border-radius: 10%;
   background-color: white;
 }
@@ -154,7 +154,7 @@ main {
 .calendar .days li {
   z-index: 1;
   cursor: pointer;
-  margin-top: 4px;
+  margin-top: 0.25rem;
   padding: 0.5rem;
 }
 
@@ -170,7 +170,7 @@ main {
 .calendar ul li {
   width: calc(100% / 7);
   position: relative;
-  height: 120px;
+  height: 7.5rem;
 }
 
 .calendar .days li::before {
@@ -184,5 +184,5 @@ main {
 
 .days li.active::before {
   background: rgb(158, 103, 158);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.5);
 }
