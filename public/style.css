@@ -1,18 +1,188 @@
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
   background: #242424;
+  font-family: "Michroma", sans-serif;
 }
 
 header {
   text-align: center;
   background: #242424;
-}
-header h1 {
   padding: 1rem 0 1rem 0;
   color: #ffff;
+  font-size: 2.5rem;
+}
+
+.container-flex {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+/* Här börjar aside */
+aside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-aside {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1.3rem;
+}
+.activeMonth {
+  font-size: 2rem;
+  color: white;
+}
+
+.activeYear {
   font-family: "Kaisei Decol", serif;
-  font-size: 3rem;
+  color: #f5f931;
+}
+
+#prevMonth {
+  font-size: 1.3rem;
+  color: white;
+  margin-top: 0.9375rem;
+}
+
+#clock {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  color: #f5f931;
+}
+
+.stuff-to-do {
+  background: rgba(255, 255, 255, 0.3);
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.today-container {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0.7rem;
+  padding: 0.7rem;
+}
+
+.createToDo {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-top: 1.2rem;
+}
+.today-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.newToDo {
+    margin-bottom: 0.4rem;
+    font-weight: normal;
+}
+
+.p-today {
+  color: white;
+  margin-bottom: 0.3rem;
+}
+
+.inputStyles {
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.add-todo {
+  background: #fbd5fc;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+
+
+/* Här börjar MAIN */
+
+main {
+  flex: 3;
+}
+
+.weeks {
+  font-size: 1.875rem;
+  color: #fbd5fc;
+  height: 3.75rem;
+}
+
+.days {
+  font-size: 0.9375rem;
+}
+
+.days li {
+  z-index: 1;
+  cursor: pointer;
+  margin-top: 1.25rem;
+  border: 0.1875rem solid rgb(34, 34, 34);
+  border-radius: 10%;
+  background-color: white;
+}
+
+.calendar ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.calendar .weeks li {
+  font-weight: 500;
+}
+
+.days li:hover {
+  background-color: #d9c2d9;
+}
+
+.calendar .days li {
+  z-index: 1;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+}
+
+.days li.inactive {
+  color: rgb(199, 197, 197);
+}
+
+.days li.active {
+  color: white;
+  background-color: #c1a4c1;
+}
+
+.calendar ul li {
+  width: calc(100% / 7);
+  position: relative;
+  height: 7.5rem;
+}
+
+.calendar .days li::before {
+  position: absolute;
+  content: "";
+}
+
+.days li:hover::before {
+  background: #c1a4c1;
+}
+
+.days li.active::before {
+  background: rgb(158, 103, 158);
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.5);
 }
