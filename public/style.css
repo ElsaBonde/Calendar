@@ -235,6 +235,12 @@ main {
     font-size: 0.8rem;
   }
 
+  #clock {
+    height: 4vh;
+    width: 9vh;
+    font-size: 15px;
+  }
+
 }
   
 
@@ -269,6 +275,12 @@ main {
   }
   .stuff-to-do {
     font-size: 0.7rem;
+  }
+
+  #clock {
+    height: 3.4vh;
+    width: 8vh;
+    font-size: 12px;
   }
 }
 
