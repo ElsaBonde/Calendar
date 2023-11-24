@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Calendar</title>
-		<script src="main.js"></script>
-		<script src="js/calender.js"></script>
-		<script src="js/today.js"></script>
-		<script src="js/todo.js"></script>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="./CSS/toDoForm.css">
-	</head>
-	<body>
-		<button onclick="openModal()">Add To do +</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <script src="main.js"></script>
+    <script src="js/calender.js"></script>
+    <script src="js/today.js"></script>
+    <script src="js/todo.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./CSS/toDoForm.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
+  </head>
+  <body>
+    <button onclick="openModal()">Add To do +</button>
 
-		<div id="todoModal" class="modal">
-			<div class="modal-content">
-				<span onclick="closeModal()" style="cursor: pointer">&times;</span>
-				<form action="" method="" id="todoForm">
-					<Label for="title">Title</Label>
-					<input type="text" id="titleToDo" placeholder="Title" required>
-					<Label for="Date">Date</Label>
-					<input type="date" id="dateToDo" aria-label="Date">
-					<Label for="timeToDo">Title</Label>
-					<input type="time" id="timeToDo" required />
-				</form>
-				<input type="submit" form="todoForm" value="Update"/>
-			</div>
-		</div>
-	</body>
+    <div id="todoModal" class="modal">
+      <div class="modal-content">
+        <span onclick="closeModal()" style="cursor: pointer">&times;</span>
+        <form action="" method="" id="todoForm">
+          <label for="title">Title</label>
+          <input type="text" id="titleToDo" placeholder="Title" required />
+          <label for="Date">Date</label>
+          <input type="date" id="dateToDo" aria-label="Date" />
+          <label for="timeToDo">Title</label>
+          <input type="time" id="timeToDo" required />
+        </form>
+        <input type="submit" form="todoForm" value="Update" />
+      </div>
+    </div>
+  </body>
 </html>
