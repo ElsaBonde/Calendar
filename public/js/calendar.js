@@ -6,6 +6,7 @@ const currentDate = document.querySelector(".current-date"),
 let date = new Date();
 (currYear = date.getFullYear()), (currMonth = date.getMonth());
 
+
 const renderCalendar = () => {
   let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // Getting first day of month
     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // Getting last date of month
