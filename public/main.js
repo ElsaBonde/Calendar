@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', main);
 
+/*vi måste fixa så funktionerna ligger i en main*/
 function main() {
   todaysDate();
   updateClock();
