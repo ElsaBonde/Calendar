@@ -1,96 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calendar</title>
-    <script src="main.js"></script>
-    <script src="js/calendar.js" defer></script>
-    <script src="js/today.js"></script>
-    <script src="js/todo.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./CSS/toDoForm.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    
-  </head>
-  <body>
-    <header>Calendar</header>
-    
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Calendar</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="./CSS/toDoForm.css" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+		/>
+	</head>
+	<body>
+		<header>Calendar</header>
 
-    <div class="container-flex">
-      <aside>
-        <div class="title-aside">
-        <p class="activeMonth">
-          November <span class="activeYear"> 2023</span>
-        </p>
-        <p id="prevMonth" class="fas fa-chevron-left"> <span id="nextMonth" class="fas fa-chevron-right"></span></p>
-      </div>
-      <div id="clock">
-      </div>
-        <div class="today-container">
-          <div class="today-title">
-            <p class="p-today">
-              Today <span id="todayNumbers"></span>
-            </p>
-            <p class="weather">JS</p>
-          </div>
-          <div class="stuff-to-do">hämtas med js</div>
-          <div class="stuff-to-do">hämtas med js</div>
-          <div class="stuff-to-do">hämtas med js</div>
-        </div>
-        <button onclick="openModal()">Add To do + </button>
-      </aside>
+		<div class="container-flex">
+			<!-- Aside Section -->
+			<aside>
+				<div class="title-aside">
+					<p class="activeMonth">
+						November <span class="activeYear"> 2023</span>
+					</p>
+					<p id="prevMonth" class="fa fas fa-chevron-left">
+						<span id="nextMonth" class="fa fas fa-chevron-right"></span>
+					</p>
+				</div>
+				<div id="clock"></div>
+				<div class="today-container">
+					<div class="today-title">
+						<p class="p-today">Today <span id="todayNumbers"></span></p>
+						<p class="weather">JS</p>
+					</div>
+					<ul id="eventList" style="list-style: none"></ul>
+				</div>
+				<button onclick="openModal()">Add To do +</button>
+			</aside>
 
-      <main>
-        <div class="wrapper">
-            <p class="current-date"></p>
-          <div class="calendar">
-            <ul class="weeks">
-              <li>MON</li>
-              <li>TUE</li>
-              <li>WED</li>
-              <li>THU</li>
-              <li>FRI</li>
-              <li>SAT</li>
-              <li>SUN</li>
-            </ul>
-            <ul class="days"></ul>
-          </div>
-        </div>
-      </main>
-      
-    <div id="todoModal" class="modal">
-      <div class="modal-content">
-        <span onclick="closeModal()" style="cursor: pointer; font-size: 36px; display: flex;">&times;</span>
-        <form action="" method="" id="todoForm">
-          <label for="title">Title</label>
-          <input type="text" id="titleToDo" placeholder="Title" required />
-          <label for="Date">Date</label>
-          <input type="date" id="dateToDo" aria-label="Date" />
-          <label for="timeToDo">Title</label>
-          <input type="time" id="timeToDo" required />
-        </form>
-        <input type="submit" form="todoForm" value="Add" />
-      </div>
-    </div>
-  </body>
+			<!-- Main Section -->
+			<main>
+				<div class="wrapper">
+					<p class="current-date"></p>
+					<div class="calendar">
+						<ul class="weeks">
+							<li>MON</li>
+							<li>TUE</li>
+							<li>WED</li>
+							<li>THU</li>
+							<li>FRI</li>
+							<li>SAT</li>
+							<li>SUN</li>
+						</ul>
+						<ul class="days"></ul>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<!-- Modal Section -->
+		<div id="todoModal" class="modal">
+			<div class="modal-content">
+				<span
+					onclick="closeModal()"
+					style="cursor: pointer; font-size: 36px; display: flex"
+					>&times;</span
+				>
+				<form action="" method="" id="todoForm">
+					<label for="title">Title</label>
+					<input type="text" id="titleToDo" placeholder="Title" required />
+					<label for="Date">Date</label>
+					<input type="date" id="dateToDo" aria-label="Date" />
+					<label for="timeToDo">Time</label>
+					<input type="time" id="timeToDo" required />
+				</form>
+				<input type="submit" form="todoForm" value="Add" onclick="addEvent()" />
+			</div>
+		</div>
+
+		<!-- Scripts Section -->
+		<script src="main.js"></script>
+		<script src="js/calendar.js" defer></script>
+		<script src="js/today.js"></script>
+		<script src="js/todo.js"></script>
+	</body>
 </html>
