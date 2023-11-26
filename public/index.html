@@ -10,6 +10,12 @@
     <script src="js/today.js"></script>
     <script src="js/todo.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./CSS/toDoForm.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,9 +30,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    
   </head>
   <body>
     <header>Calendar</header>
+    
 
     <div class="container-flex">
       <aside>
@@ -49,6 +57,7 @@
           <div class="stuff-to-do">hämtas med js</div>
           <div class="stuff-to-do">hämtas med js</div>
         </div>
+        <button onclick="openModal()">Add To do + </button>
       </aside>
 
       <main>
@@ -68,5 +77,20 @@
           </div>
         </div>
       </main>
+      
+    <div id="todoModal" class="modal">
+      <div class="modal-content">
+        <span onclick="closeModal()" style="cursor: pointer; font-size: 36px; display: flex;">&times;</span>
+        <form action="" method="" id="todoForm">
+          <label for="title">Title</label>
+          <input type="text" id="titleToDo" placeholder="Title" required />
+          <label for="Date">Date</label>
+          <input type="date" id="dateToDo" aria-label="Date" />
+          <label for="timeToDo">Title</label>
+          <input type="time" id="timeToDo" required />
+        </form>
+        <input type="submit" form="todoForm" value="Add" />
+      </div>
+    </div>
   </body>
 </html>
