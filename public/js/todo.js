@@ -58,7 +58,7 @@ function updateEventList(events) {
 	// Iterate through the events and create list items
 	events.forEach(function (event) {
 		var listItem = document.createElement("li");
-		listItem.textContent = `${event.title} - ${event.date} - ${event.time}`;
+		listItem.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
 		eventList.appendChild(listItem);
 	});
 }

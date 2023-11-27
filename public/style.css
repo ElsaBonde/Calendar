@@ -38,7 +38,7 @@ aside {
   justify-content: space-between;
   margin-bottom: 1.3rem;
 }
-.activeMonth {
+#activeMonth {
   font-size: 2rem;
   color: white;
 }
@@ -106,20 +106,14 @@ aside {
   margin-bottom: 0.3rem;
 }
 
-.inputStyles {
-  padding: 0.5rem;
-  font-size: 1.1rem;
-  border-radius: 0.5rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.add-todo {
-  background: #fbd5fc;
-  padding: 0.5rem;
-  font-size: 1.1rem;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
+#eventList li {
+  white-space: pre-line;
+  font-size: 1rem;
+  background: rgba(225, 223, 223, 0.3);
+  padding: 0.3rem 0.6rem;
+  margin-top: 0.7rem;
+  border-radius: 0.3rem;
+  font-family: "Kaisei Decol", serif;
 }
 
 /* Här börjar MAIN */
@@ -218,7 +212,7 @@ main {
     position: relative;
     height: 6rem;
   }
-  .activeMonth {
+  #activeMonth {
     font-size: 1.5rem;
   }
   #prevMonth, #nextMonth {
@@ -261,7 +255,7 @@ main {
     height: 5rem;
   }
 
-  .activeMonth {
+  #activeMonth {
     font-size: 1.1rem;
   }
   #prevMonth, #nextMonth {
@@ -326,7 +320,7 @@ main {
       margin-bottom: 0.3rem;
     }
   
-    .activeMonth {
+    #activeMonth {
       font-size: 1.3rem;
     }
     #prevMonth, #nextMonth {
