@@ -38,7 +38,7 @@ aside {
   justify-content: space-between;
   margin-bottom: 1.3rem;
 }
-.activeMonth {
+#activeMonth {
   font-size: 2rem;
   color: white;
 }
@@ -218,7 +218,7 @@ main {
     position: relative;
     height: 6rem;
   }
-  .activeMonth {
+  #activeMonth {
     font-size: 1.5rem;
   }
   #prevMonth, #nextMonth {
@@ -261,7 +261,7 @@ main {
     height: 5rem;
   }
 
-  .activeMonth {
+  #activeMonth {
     font-size: 1.1rem;
   }
   #prevMonth, #nextMonth {
@@ -326,7 +326,7 @@ main {
       margin-bottom: 0.3rem;
     }
   
-    .activeMonth {
+    #activeMonth {
       font-size: 1.3rem;
     }
     #prevMonth, #nextMonth {
