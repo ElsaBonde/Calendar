@@ -1,4 +1,14 @@
-function todaysDate() {
+function initToday() {
+  tick()
+  setInterval(tick, 1000);
+}
+
+function tick() {
+  displayDate();
+  displayTime();
+}
+
+function displayDate() {
   const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   let today = new Date();
 
@@ -11,10 +21,10 @@ function todaysDate() {
   // get html reference
   let todayNumbers = document.getElementById("todayNumbers");
   // update html
-  todayNumbers.textContent = `${day} - ${dayMonthString}`;
+  todayNumbers.textContent = `${day} - ${dayMonthString} - ${today.getFullYear()}`;
 }
 
-function updateClock() {
+function displayTime() {
   const now = new Date();
   let hours = now.getHours();
   let minutes = now.getMinutes();

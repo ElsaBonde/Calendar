@@ -1,12 +1,8 @@
-window.addEventListener('DOMContentLoaded', main);
+window.addEventListener("DOMContentLoaded", main);
 
-/*vi måste fixa så funktionerna ligger i en main*/
+/*vi måste fixa så funktionerna ligger annorlunda sen*/
 function main() {
-  todaysDate();
-  updateClock();
-  setInterval(updateClock, 60000);
-  // Init today view
+  initToday();
   // Init todos list
   // Init calendar
 }
-
