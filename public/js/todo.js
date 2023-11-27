@@ -45,6 +45,9 @@ function addEvent() {
 
 	// Close the modal
 	closeModal();
+
+	// load events
+	loadEvents();
 }
 
 // Function to update the event list on the page
