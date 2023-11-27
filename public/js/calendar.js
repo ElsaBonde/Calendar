@@ -44,7 +44,7 @@ const renderCalendar = () => {
       currYear === new Date().getFullYear()
         ? "active"
         : "";
-    liTag += `<li class="${isToday}">${i}</li>`;
+    liTag += `<li class="${isToday}" data-cy="calendar-cell">${i}</li>`;
   }
 
   for (let i = lastDayofMonth; i < 6; i++) {
@@ -85,6 +85,3 @@ function handleMonthChange() {
   // Rendera kalendern med de uppdaterade värdena för år och månad
   renderCalendar();
 }
-
-
-
