@@ -9,11 +9,9 @@ body {
 }
 
 header {
-  text-align: center;
   background: #242424;
   padding: 1rem 0 1rem 0;
-  color: #ffff;
-  font-size: 2.5rem;
+  margin: 0;
 }
 
 .container-flex {
@@ -26,22 +24,22 @@ header {
 /* Här börjar aside */
 aside {
   grid-column: 1;
+  grid-row: 1 / 2;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 
 .title-aside {
-  grid-row: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 1.3rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .activeMonth {
   font-size: 2rem;
   color: white;
+  margin-right: 6rem;
+  margin-left: 6rem;
 }
 
 .activeYear {
@@ -49,11 +47,10 @@ aside {
   color: #f5f931;
 }
 
-#prevMonth, #nextMonth {
+#prevMonth,
+#nextMonth {
   font-size: 1.3rem;
   color: white;
-  margin-top: 0.9375rem;
-  
 }
 
 #clock {
@@ -64,11 +61,12 @@ aside {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 4.5vh;
+  height: 5vh;
   width: 10vh;
   margin: 0 auto;
   margin-bottom: 0.5rem;
   border: 1px solid rgb(184, 184, 184);
+  grid-row: 1;
 }
 
 .stuff-to-do {
@@ -79,7 +77,8 @@ aside {
 }
 
 .today-container {
-    grid-row: 2;
+  grid-row: 2;
+  margin-top: 4px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 0.7rem;
   padding: 0.7rem;
@@ -94,7 +93,6 @@ aside {
 .today-title {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .newToDo {
@@ -121,17 +119,21 @@ aside {
 /* Här börjar MAIN */
 
 main {
-    grid-row: 1 /span 2;
-    grid-column: 2;
-    margin-left: 0.9375rem;
+  grid-row: 1 / 2;
+  grid-column: 2;
+  margin-left: 0.9375rem;
 }
 
 .weeks {
+  grid-row: 1;
   font-size: 1.6rem;
   color: #fbd5fc;
   height: 3.75rem;
-  } 
+}
 
+.days {
+  grid-row: 2;
+}
 
 .days li {
   z-index: 1;
@@ -151,7 +153,6 @@ main {
 .calendar .weeks li {
   font-weight: 500;
 }
-
 
 .weeks li {
   flex-grow: 1;
@@ -198,13 +199,13 @@ main {
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.5);
 }
 
-
 /*HÄR BÖRJAR MQ*/
 
 @media screen and (max-width: 1270px) and (min-width: 1001px) {
-    .weeks {
-        height: 2.8rem;
-    }
+  .weeks {
+    height: 2.8rem;
+    grid-row: 1;
+  }
   .weeks li {
     font-size: 1.2rem;
   }
@@ -217,7 +218,8 @@ main {
   .activeMonth {
     font-size: 1.5rem;
   }
-  #prevMonth, #nextMonth {
+  #prevMonth,
+  #nextMonth {
     font-size: 1.2rem;
     margin-top: 0.6rem;
   }
@@ -234,19 +236,24 @@ main {
     height: 4vh;
     width: 9vh;
     font-size: 15px;
+    grid-row: 1;
   }
-
+  .today-container {
+    grid-row: 2;
+  }
+  .days {
+    grid-row: 2;
+  }
 }
-  
 
 @media screen and (max-width: 1000px) and (min-width: 769px) {
-    .weeks {
-        height: 2.4rem;
-        padding-left: 20px;
-    }
-    .days {
-        padding-left: 20px;
-    }
+  .weeks {
+    height: 2.4rem;
+    padding-left: 20px;
+  }
+  .days {
+    padding-left: 20px;
+  }
   .weeks li {
     font-size: 15px;
   }
@@ -260,7 +267,8 @@ main {
   .activeMonth {
     font-size: 1.1rem;
   }
-  #prevMonth, #nextMonth {
+  #prevMonth,
+  #nextMonth {
     font-size: 1rem;
     margin-top: 0.4rem;
   }
@@ -280,84 +288,89 @@ main {
 }
 
 @media screen and (max-width: 768px) and (min-width: 500px) {
-    .container-flex {
-        display: flex;
-        flex-direction: column;
-        row-gap: 1rem;
-    }
-    aside {
-        order: 3;
-    } 
-    .weeks, .days {
-        padding-left: 0;
-    }
-    .weeks {
-        font-size: 1.3rem;
-        height: 2rem;
-    }
-    .stuff-to-do {
-        font-size: 0.8rem;
-    }
-
-}   
+  .container-flex {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  aside {
+    order: 3;
+  }
+  .weeks,
+  .days {
+    padding-left: 0;
+  }
+  .weeks {
+    font-size: 1.3rem;
+    height: 2rem;
+  }
+  .stuff-to-do {
+    font-size: 0.8rem;
+  }
+}
 
 @media screen and (max-width: 499px) {
-    .container-flex {
-      display: flex;
-      flex-direction: column;
-      row-gap: 0.6rem;
-    }
-  
-    header {
-      font-size: 1.8rem;
-    }
-  
-    /* aside startar här */
-    aside {
-      order: 3;
-    }
-  
-    .title-aside {
-      order: 1;
-      margin-bottom: 0.3rem;
-    }
-  
-    .activeMonth {
-      font-size: 1.3rem;
-    }
-    #prevMonth, #nextMonth {
-      font-size: 1.1rem;
-      margin-top: auto;
-    }
-    .stuff-to-do {
-        font-size: 0.72rem;
-    }
-  
-    /* main startar här  */
-    main {
-      order: 2;
-      margin-bottom: 1rem;
-    }
-  
-    .weeks {
-      font-size: 0.7rem;
-      height: 1.1rem;
-    }
-    .days,
-    .weeks {
-      padding: 0;
-    }
-    .days {
-      font-size: 0.6rem;
-      text-align: center;
-    }
-  
-    .calendar ul li {
-      height: 2.8rem;
-      border-radius: 50%;
-    }
-  
-    .calendar .days li {
-      padding-top: 0.74rem;
-    }
+  .activeMonth {
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
+  .container-flex {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.6rem;
+  }
+
+  header {
+    font-size: 1.8rem;
+  }
+
+  /* aside startar här */
+  aside {
+    order: 3;
+  }
+
+  .title-aside {
+    order: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .activeMonth {
+    font-size: 1.3rem;
+  }
+  #prevMonth,
+  #nextMonth {
+    font-size: 1.1rem;
+    margin-top: auto;
+  }
+  .stuff-to-do {
+    font-size: 0.72rem;
+  }
+
+  /* main startar här  */
+  main {
+    order: 2;
+    margin-bottom: 1rem;
+  }
+
+  .weeks {
+    font-size: 0.7rem;
+    height: 1.1rem;
+  }
+  .days,
+  .weeks {
+    padding: 0;
+  }
+  .days {
+    font-size: 0.6rem;
+    text-align: center;
+  }
+
+  .calendar ul li {
+    height: 2.8rem;
+    border-radius: 50%;
+  }
+
+  .calendar .days li {
+    padding-top: 0.74rem;
+  }
+}

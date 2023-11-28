@@ -22,18 +22,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 <body onload="loadEvents()">
-    <header>Calendar</header>
+    <header><div class="title-aside">
+        <p id="prevMonth" class="fas fa-chevron-left" data-cy="prev-month"></p>
+        <span class="activeMonth">
+        </span>
+        <span id="nextMonth" class="fas fa-chevron-right" data-cy="next-month"></span>
+    </div></header>
 
     <div class="container-flex">
         <!-- Aside Section -->
         <aside data-cy="welcome-segment">
-            <div class="title-aside">
-                <p id="prevMonth" class="fas fa-chevron-left" data-cy="prev-month"></p>
-
-                <p class="activeMonth">
-                </p>
-                <p id="nextMonth" class="fas fa-chevron-right" data-cy="next-month"></p>
-            </div>
             <div id="clock"></div>
             <div class="today-container">
                 <div class="today-title">
