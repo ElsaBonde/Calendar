@@ -61,6 +61,7 @@ function updateEventList(events) {
 
 		// Create a span for event-info
 		var eventInfo = document.createElement("span");
+		eventInfo.className = "liEvents";
 		eventInfo.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
 		listItem.appendChild(eventInfo);
 

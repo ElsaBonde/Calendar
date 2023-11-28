@@ -1,40 +1,18 @@
 * {
-  margin: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Michroma";
 }
 
 body {
-  background: #242424;
-  font-family: "Michroma", sans-serif;
+	background: #242424;
 }
 
 header {
-  background: #242424;
   padding: 1rem 0 1rem 0;
   margin: 0;
 }
-
-.container-flex {
-  display: grid;
-  grid-template-columns: 27% 73%;
-  grid-template-rows: 10% 90%;
-  padding: 1rem;
-}
-
-/* Här börjar aside */
-aside {
-  grid-column: 1;
-  grid-row: 1 / 2;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.title-aside {
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
 .activeMonth {
   font-size: 2rem;
   color: white;
@@ -54,20 +32,38 @@ aside {
   margin-top: 0.9375rem;
 }
 
+.container-grid {
+  display: grid;
+  grid-template-columns: 27% 73%;
+  grid-template-rows: 10% 90%;
+  padding: 1rem;
+}
+
+/* Här börjar aside */
+aside {
+  grid-row: 1 / span 2;
+ display: grid;
+ grid-template-rows: 10% 90%;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+.monthAndArrows {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
 #clock {
   background: rgba(86, 86, 86, 0.3);
   padding: 0.5rem;
   border-radius: 0.5rem;
   color: #f5f931;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 5vh;
   width: 10vh;
   margin: 0 auto;
-  margin-bottom: 0.5rem;
   border: 1px solid rgb(184, 184, 184);
-  grid-row: 1;
+  align-self: center;
 }
 
 .stuff-to-do {
@@ -78,10 +74,19 @@ aside {
 }
 
 .today-container {
-  grid-row: 2;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 0.7rem;
   padding: 0.7rem;
+  max-height: 550px;
+  overflow-y: auto;
+}
+.today-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.today-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px 100px 100px 20px;
 }
 
 .createToDo {
@@ -105,11 +110,11 @@ aside {
   margin-bottom: 0.3rem;
 }
 
-button.editButton {
+.editButton {
   background-image: url(Edit.png);
   background-size: contain;
-  height: 30px;
-  width: 30px;
+  height: 1.875rem;
+  width: 1.875rem;
   border-radius: 50%;
 }
 
@@ -121,27 +126,25 @@ button.editButton {
   padding: 0.3rem 0.6rem;
   margin-top: 0.7rem;
   border-radius: 0.3rem;
-  font-family: "Kaisei Decol", serif;
   display: flex;
   justify-content: space-between;
+}
+.liEvents {
+  font-family: "Kaisei Decol", serif;
 }
 
 /* Här börjar MAIN */
 
 main {
-  grid-row: 1 / 2;
+  grid-row: 1 / span 2;
   grid-column: 2;
   margin-left: 0.9375rem;
 }
 
 .weeks {
-  grid-row: 1;
   font-size: 1.6rem;
   color: #fbd5fc;
   height: 3.75rem;
-}
-.days {
-  grid-row: 2;
 }
 
 .days li {
@@ -158,9 +161,8 @@ main {
   list-style: none;
   flex-wrap: wrap;
 }
-
-.calendar .weeks li {
-  font-weight: 500;
+.allDays {
+  top: 25%;
 }
 
 .weeks li {
@@ -211,14 +213,12 @@ main {
 /*HÄR BÖRJAR MQ*/
 
 @media screen and (max-width: 1270px) and (min-width: 1001px) {
-  .weeks {
-    height: 2.8rem;
-    grid-row: 1;
-  }
   .weeks li {
     font-size: 1.2rem;
   }
-
+  .today-container {
+    max-height: 28rem;
+  }
   .calendar ul li {
     width: calc(100% / 7);
     position: relative;
@@ -245,23 +245,16 @@ main {
     height: 4vh;
     width: 9vh;
     font-size: 15px;
-    grid-row: 1;
-  }
-  .today-container {
-    grid-row: 2;
-  }
-  .days {
-    grid-row: 2;
   }
 }
 
 @media screen and (max-width: 1000px) and (min-width: 769px) {
+
   .weeks {
-    height: 2.4rem;
     padding-left: 20px;
   }
-  .days {
-    padding-left: 20px;
+  .today-container {
+    max-height: 23rem;
   }
   .weeks li {
     font-size: 15px;
@@ -297,7 +290,7 @@ main {
 }
 
 @media screen and (max-width: 768px) and (min-width: 500px) {
-  .container-flex {
+  .container-grid {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
@@ -323,7 +316,7 @@ main {
     margin-left: 2rem;
     margin-right: 2rem;
   }
-  .container-flex {
+  .container-grid {
     display: flex;
     flex-direction: column;
     row-gap: 0.6rem;
@@ -338,7 +331,7 @@ main {
     order: 3;
   }
 
-  .title-aside {
+  .monthAndArrows {
     order: 1;
     margin-bottom: 0.3rem;
   }

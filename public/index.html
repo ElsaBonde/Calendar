@@ -22,17 +22,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 <body onload="loadEvents()">
-    <header><div class="title-aside">
-        <p id="prevMonth" class="fas fa-chevron-left" data-cy="prev-month"></p>
-        <span class="activeMonth">
-        </span>
-        <span id="nextMonth" class="fas fa-chevron-right" data-cy="next-month"></span>
-    </div></header>
-
-    <div class="container-flex">
+    <header>
+        <div class="monthAndArrows">
+            <p id="prevMonth" class="fas fa-chevron-left" data-cy="prev-month"></p>
+            <span class="activeMonth"></span>
+            <span id="nextMonth" class="fas fa-chevron-right" data-cy="next-month"></span>
+        </div>
+    </header>
+    <div class="container-grid">
         <!-- Aside Section -->
         <aside data-cy="welcome-segment">
             <div id="clock"></div>
+            <div class="flex">
             <div class="today-container">
                 <div class="today-title">
                     <p class="p-today"> <!-- hämta weekday från js --> <span id="todayNumbers"></span></p>
@@ -40,6 +41,7 @@
 				<ul id="eventList" data-cy="todo-list"></ul>
             </div>
 			<button onclick="openModal()" data-cy="todo-reveal-form">Add To do +</button>
+        </div>
         </aside>
 
         <!-- Main Section -->
@@ -48,13 +50,13 @@
                 <p class="current-date"></p>
                 <div class="calendar">
                     <ul class="weeks">
-                        <li>MON</li>
-                        <li>TUE</li>
-                        <li>WED</li>
-                        <li>THU</li>
-                        <li>FRI</li>
-                        <li>SAT</li>
-                        <li>SUN</li>
+                        <li class="allDays">MON</li>
+                        <li class="allDays">TUE</li>
+                        <li class="allDays">WED</li>
+                        <li class="allDays">THU</li>
+                        <li class="allDays">FRI</li>
+                        <li class="allDays">SAT</li>
+                        <li class="allDays">SUN</li>
                     </ul>
                     <ul class="days" data-cy="calendar-body">
                         <li class="inactive" data-cy="calendar-cell"></li>
