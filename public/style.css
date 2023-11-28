@@ -51,6 +51,7 @@ aside {
 #nextMonth {
   font-size: 1.3rem;
   color: white;
+  margin-top: 0.9375rem;
 }
 
 #clock {
@@ -78,7 +79,6 @@ aside {
 
 .today-container {
   grid-row: 2;
-  margin-top: 4px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 0.7rem;
   padding: 0.7rem;
@@ -140,7 +140,6 @@ main {
   color: #fbd5fc;
   height: 3.75rem;
 }
-
 .days {
   grid-row: 2;
 }
