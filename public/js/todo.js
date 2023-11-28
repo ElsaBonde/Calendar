@@ -58,7 +58,19 @@ function updateEventList(events) {
 	// Iterate through the events and create list items
 	events.forEach(function (event) {
 		var listItem = document.createElement("li");
-		listItem.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
+
+		// Create a span for event-info
+		var eventInfo = document.createElement("span");
+		eventInfo.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
+		listItem.appendChild(eventInfo);
+
+		// Creata a button
+		var editButton = document.createElement("button");
+		editButton.className = "editButton";
+		editButton.onclick = function () {
+
+		};
+		listItem.appendChild(editButton);
 		eventList.appendChild(listItem);
 	});
 }
