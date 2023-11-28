@@ -34,7 +34,7 @@ const renderCalendar = () => {
   let liTag = "";
 
   for (let i = firstDayofMonth; i > 0; i--) {
-    liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+    liTag += `<li class="inactive" data-cy="calendar-cell">${lastDateofLastMonth - i + 1}</li>`;
   }
 
   for (let i = 1; i <= lastDateofMonth; i++) {
@@ -48,7 +48,7 @@ const renderCalendar = () => {
   }
 
   for (let i = lastDayofMonth; i < 6; i++) {
-    liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+    liTag += `<li class="inactive" data-cy="calendar-cell">${i - lastDayofMonth + 1}</li>`;
   }
 
   // Uppdatera månadsnamnet i HTML
