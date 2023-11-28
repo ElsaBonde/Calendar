@@ -1,3 +1,5 @@
+
+
 const currentDate = document.querySelector(".current-date"),
   daysTag = document.querySelector(".days"),
   prevIcon = document.getElementById("prevMonth"),
