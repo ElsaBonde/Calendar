@@ -89,6 +89,16 @@ aside {
   border-radius: 100px 900px 900px 100px;
 }
 
+.today-container scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.today-container scrollbar thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 100px 900px 900px 100px;
+}
+
 .createToDo {
   display: flex;
   flex-direction: column;
