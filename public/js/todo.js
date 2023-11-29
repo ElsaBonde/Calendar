@@ -24,9 +24,12 @@ function addEvent() {
 	var date = document.getElementById("dateToDo").value;
 	var time = document.getElementById("timeToDo").value;
 
+	//gör att första bokstaven i title i ett event blir en versal
+	let titleCapital = title.charAt(0).toUpperCase() + title.slice(1);
+
 	// Create a new event object
 	var newEvent = {
-		title: title,
+		title: titleCapital,
 		date: date,
 		time: time,
 	};
@@ -55,9 +58,12 @@ function updateEventList(events) {
 	var eventList = document.getElementById("eventList");
 	eventList.innerHTML = ""; // Clear existing list
 
+	sortList(events);
+
 	// Iterate through the events and create list items
 	events.forEach(function (event) {
 		var listItem = document.createElement("li");
+
 
 		// Create a span for event-info
 		var eventInfo = document.createElement("span");
@@ -74,6 +80,17 @@ function updateEventList(events) {
 		listItem.appendChild(editButton);
 		eventList.appendChild(listItem);
 	});
+}
+
+function sortList(events) {
+	//sorterar både datum och tid, tar in två parametrar för att jämföra
+	events.sort((a, b) => {
+		//hämtar datum och tid för a och b (aDateTime för a och bDateTime för b). dessa representerar två element i eventlistan
+        const aDateTime = `${a.date} ${a.time}`;
+        const bDateTime = `${b.date} ${b.time}`;
+		//jämför a och b mot varandra genom localCompare och retunerar ett värde som på så vis byter plats på items
+        return aDateTime.localeCompare(bDateTime);
+    });
 }
 
 // Function to load events from local storage and update the list on page load
