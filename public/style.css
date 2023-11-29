@@ -121,7 +121,7 @@ aside {
 }
 
 .editButton {
-  background-image: url(Edit.png);
+  background-image: url(img/Edit.png);
   background-size: contain;
   height: 1.875rem;
   width: 1.875rem;
