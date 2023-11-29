@@ -24,12 +24,9 @@ function addEvent() {
 	var date = document.getElementById("dateToDo").value;
 	var time = document.getElementById("timeToDo").value;
 
-	//gör att första bokstaven i title i ett event blir en versal
-	let titleCapital = title.charAt(0).toUpperCase() + title.slice(1);
-
 	// Create a new event object
 	var newEvent = {
-		title: titleCapital,
+		title: title,
 		date: date,
 		time: time,
 	};
