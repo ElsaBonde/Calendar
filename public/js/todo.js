@@ -51,8 +51,8 @@ function addEvent() {
 }
 
 // Function to update the event list on the page
-function updateEventList(events) {
-  var eventList = document.getElementById("eventList");
+/*function updateEventList(events) {
+  const eventList = document.getElementById("eventList");
   eventList.innerHTML = ""; // Clear existing list
 
   sortList(events);
@@ -69,6 +69,30 @@ function updateEventList(events) {
 
     // Creata a button
     var editButton = document.createElement("button");
+    editButton.className = "editButton";
+    editButton.onclick = function () {};
+    listItem.appendChild(editButton);
+    eventList.appendChild(listItem);
+  });
+}*/
+function updateEventList(events) {
+  const eventList = document.getElementById("eventList");
+  eventList.innerHTML = ""; // Clear existing list
+
+  sortList(events);
+
+  // Iterate through the events and create list items
+  events.forEach(function (event) {
+    const listItem = document.createElement("li");
+
+    // Create a span for event-info
+    const eventInfo = document.createElement("span");
+    eventInfo.className = "liEvents";
+    eventInfo.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
+    listItem.appendChild(eventInfo);
+
+    // Creata a button
+    const editButton = document.createElement("button");
     editButton.className = "editButton";
     editButton.onclick = function () {};
     listItem.appendChild(editButton);
@@ -95,14 +119,35 @@ function sortList(events) {
   updateEventList(filteredEvents);
 }
 */
+let selectedDate = null;
+
 function showEventsForDate(event) {
   const clickedDate = event.target.dataset.date;
+
+  // Check if the same date is clicked again
+  if (selectedDate === clickedDate) {
+    // If yes, load all events for the month
+    loadEvents();
+    selectedDate = null; // Reset selectedDate
+    return;
+  }
+
   if (clickedDate) {
+    const [clickedYear, clickedMonth, clickedDay] = clickedDate.split("-");
     const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
-    const eventsForDate = existingEvents.filter(
-      (event) => event.date === clickedDate
+
+    // Filter events for the entire year
+    const eventsForYear = existingEvents.filter((evt) =>
+      evt.date.startsWith(`${clickedYear}`)
     );
+
+    // Filter events for the specific date (day and month)
+    const eventsForDate = eventsForYear.filter(
+      (evt) => evt.date === clickedDate
+    );
+
     updateEventList(eventsForDate);
+    selectedDate = clickedDate; // Set selectedDate
   }
 }
 

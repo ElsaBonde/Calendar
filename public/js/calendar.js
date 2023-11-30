@@ -112,17 +112,25 @@ nextIcon.addEventListener("click", () => {
   handleMonthChange();
 });
 
-// Funktion för att hantera förändring av månad
+// Function to handle month change
 function handleMonthChange() {
+  // Check if the current month is out of bounds
   if (currMonth < 0 || currMonth > 11) {
-    // Om månaden är mindre än 0 eller större än 11, uppdatera år och månad
+    // If the month is out of bounds, update the year and month
     date = new Date(currYear, currMonth);
     currYear = date.getFullYear();
     currMonth = date.getMonth();
   } else {
-    // Annars, återställ datumet till dagens datum
+    // Otherwise, reset the date to the current date
     date = new Date();
   }
-  // Rendera kalendern med de uppdaterade värdena för år och månad
+
+  // Render the calendar with the updated values for the year and month
   renderCalendar();
+
+  // Reattach event listeners to the new calendar cells
+  attachEventListeners();
+
+  // Load events for the new month
+  loadEvents();
 }
