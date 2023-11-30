@@ -114,23 +114,30 @@ nextIcon.addEventListener("click", () => {
 
 // Function to handle month change
 function handleMonthChange() {
-  // Check if the current month is out of bounds
-  if (currMonth < 0 || currMonth > 11) {
-    // If the month is out of bounds, update the year and month
-    date = new Date(currYear, currMonth);
-    currYear = date.getFullYear();
-    currMonth = date.getMonth();
-  } else {
-    // Otherwise, reset the date to the current date
-    date = new Date();
+  //säkerställer att currMonth är inom intervallet 0-11 (jan-dec))
+  if (currMonth < 0) {
+    currMonth = 11; //öppna december om currMonth är mindre än 0
+    currYear--; //minskar årtalet med ett om currMonth är mindre än 0
+  } else if (currMonth > 11) {
+    currMonth = 0; //öppna januari om currMonth är större än 11
+    currYear++; //öka årtalet med 1 om currMonth är större än 11 (nytt år)
   }
 
   // Render the calendar with the updated values for the year and month
   renderCalendar();
 
-  // Reattach event listeners to the new calendar cells
-  attachEventListeners();
+   //uppdaterar klicken för datumcellerna i kalendern
+   updateDateClickHandlers();
 
   // Load events for the new month
   loadEvents();
+}
+
+function updateDateClickHandlers() {
+  const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
+  
+  calendarCells.forEach((cell) => {
+    cell.removeEventListener("click", showEventsForDate); // Ta bort tidigare klickhändelse
+    cell.addEventListener("click", showEventsForDate); // Lägg till uppdaterad klickhändelse
+  });
 }
