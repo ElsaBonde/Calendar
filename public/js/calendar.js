@@ -1,5 +1,3 @@
-
-
 const currentDate = document.querySelector(".current-date"),
   daysTag = document.querySelector(".days"),
   prevIcon = document.getElementById("prevMonth"),
@@ -36,7 +34,9 @@ const renderCalendar = () => {
   let liTag = "";
 
   for (let i = firstDayofMonth; i > 0; i--) {
-    liTag += `<li class="inactive" data-cy="calendar-cell">${lastDateofLastMonth - i + 1}</li>`;
+    liTag += `<li class="inactive" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${
+      lastDateofLastMonth - i + 1
+    }</span></li>`;
   }
 
   for (let i = 1; i <= lastDateofMonth; i++) {
@@ -46,11 +46,13 @@ const renderCalendar = () => {
       currYear === new Date().getFullYear()
         ? "active"
         : "";
-    liTag += `<li class="${isToday}" data-cy="calendar-cell">${i}</li>`;
+    liTag += `<li class="${isToday}" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${i}</span></li>`;
   }
 
   for (let i = lastDayofMonth; i < 6; i++) {
-    liTag += `<li class="inactive" data-cy="calendar-cell">${i - lastDayofMonth + 1}</li>`;
+    liTag += `<li class="inactive" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${
+      i - lastDayofMonth + 1
+    }</span>npm </li>`;
   }
 
   // Uppdatera månadsnamnet i HTML
