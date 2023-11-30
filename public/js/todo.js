@@ -71,14 +71,33 @@ function updateEventList(events) {
 		eventInfo.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
 		listItem.appendChild(eventInfo);
 
-		// Creata a button
-		var editButton = document.createElement("button");
+		// Creata a edit-button
+		const editButton = document.createElement("button");
 		editButton.className = "editButton";
 		editButton.onclick = function () {
 
 		};
 		listItem.appendChild(editButton);
-		eventList.appendChild(listItem);
+
+		
+
+		// Create a delete-button 
+		const deleteButton = document.createElement("button");
+		deleteButton.className = "deleteButton";
+		deleteButton.dataset.cy = "delete-todo-button";
+		deleteButton.onclick = function () {
+			// Handle delete-button
+			// event
+			// 1. Ta bort eventet från arren av events
+			// 2. Rendera om hela DOM-listan
+			const listItem = this.parentNode;
+            const eventList = listItem.parentNode;
+
+			eventList.removeChild(listItem);
+		};
+
+		listItem.appendChild(deleteButton);
+        eventList.appendChild(listItem);
 	});
 }
 
