@@ -1,5 +1,7 @@
 /**Open modal function */
 
+var existingEvents = JSON.parse(localStorage.getItem("events")) || [];
+
 function openModal() {
 	console.log("openModal function is called!");
 	document.getElementById("todoModal").style.display = "flex"; // Change 'flex' to 'block' if you prefer
@@ -8,6 +10,7 @@ function openModal() {
 // Function to close the modal
 function closeModal() {
 	document.getElementById("todoModal").style.display = "none";
+	document.getElementById("editModal").style.display = "none";
 }
 
 // Close the modal if the user clicks outside of it
@@ -71,13 +74,49 @@ function updateEventList(events) {
 		// Creata a button
 		var editButton = document.createElement("button");
 		editButton.className = "editButton";
-		editButton.onclick = function () {
-
-		};
 		listItem.appendChild(editButton);
 		eventList.appendChild(listItem);
 	});
+
+	document.getElementById('eventList').addEventListener('click', function (event) {
+		if (event.target.classList.contains('editButton')) {
+			handleEditClick(event, existingEvents);
+		}
+	});
 }
+
+function handleEditClick(event, existingEvents) {
+	const listItem = event.target.parentElement; //listelementet som innehåller det klickade editButton
+    const index = Array.from(listItem.parentNode.children).indexOf(listItem); //hitta index för listelementet i dess förälders children
+	const selectedEvent = existingEvents[index];
+	fillEditModal(selectedEvent);
+}
+
+function fillEditModal(selectedEvent) {
+	document.getElementById('editTitle').value = selectedEvent.title;
+	document.getElementById('editDate').value = selectedEvent.date;
+	document.getElementById('editTime').value = selectedEvent.time;
+
+	document.getElementById('editModal').style.display = "flex";
+}
+
+function updateEventInLocalStorage(index) {
+	console.log('Index in updateEventInLocalStorage:', index); 
+	const existingEvents = JSON.parse(localStorage.getItem('events')) || [];
+    
+    // Hämta de uppdaterade värdena från input-fälten i modalen
+    const updatedTitle = document.getElementById('editTitle').value;
+    const updatedDate = document.getElementById('editDate').value;
+    const updatedTime = document.getElementById('editTime').value;
+
+    //uppdaterar eventet med de nya värdena
+    existingEvents[index].title = updatedTitle;
+    existingEvents[index].date = updatedDate;
+    existingEvents[index].time = updatedTime;
+
+    //sparar den uppdaterade events-arrayen till LS
+    localStorage.setItem('events', JSON.stringify(existingEvents));
+  }
 
 function sortList(events) {
 	//sorterar både datum och tid, tar in två parametrar för att jämföra
