@@ -24,11 +24,11 @@ const renderCalendar = () => {
   let liTag = "";
 
   for (let i = firstDayofMonth; i > 0; i--) {
-    liTag += `<li class="inactive" data-cy="calendar-cell" data-date="${currYear}-${currMonth
-      .toString()
-      .padStart(2, "0")}-${(lastDateofLastMonth - i + 1).toString().padStart(2, "0")}">${lastDateofLastMonth - i + 1}</li>`;
+    liTag += `<li class="inactive" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${
+      lastDateofLastMonth - i + 1
+    }</span></li>`;
   }
-
+ 
   for (let i = 1; i <= lastDateofMonth; i++) {
     let isToday =
       i === date.getDate() &&
@@ -36,15 +36,13 @@ const renderCalendar = () => {
       currYear === new Date().getFullYear()
         ? "active"
         : "";
-    liTag += `<li class="${isToday}" data-cy="calendar-cell" data-date="${currYear}-${(currMonth + 1)
-      .toString()
-      .padStart(2, "0")}-${i.toString().padStart(2, "0")}">${i}</li>`;
+    liTag += `<li class="${isToday}" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${i}</span></li>`;
   }
-
+ 
   for (let i = lastDayofMonth; i < 6; i++) {
-    liTag += `<li class="inactive" data-cy="calendar-cell" data-date="${currYear}-${(currMonth + 2)
-      .toString()
-      .padStart(2, "0")}-${(i - lastDayofMonth + 1).toString().padStart(2, "0")}">${i - lastDayofMonth + 1}</li>`;
+    liTag += `<li class="inactive" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${
+      i - lastDayofMonth + 1
+    }</span>npm </li>`;
   }
 
   const activeMonthElement = document.querySelector(".activeMonth");
