@@ -52,11 +52,13 @@ function updateEventList(events) {
 
 		const editButton = document.createElement("button");
 		editButton.className = "editButton";
+		editButton.innerHTML = '<i class="far fa-pen-to-square" style="color: #000000;"></i>';
 		editButton.onclick = function () {};
 		listItem.appendChild(editButton);
 
 		const deleteButton = document.createElement("button");
 		deleteButton.className = "deleteButton";
+		deleteButton.innerHTML = '<i class="fa-regular fa-trash-can" style="color: #000000;"></i>'
 		deleteButton.dataset.cy = "delete-todo-button";
 		deleteButton.onclick = function () {
 			const listItem = this.parentNode;
