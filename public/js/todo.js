@@ -76,6 +76,7 @@ function addEvent() {
   });
 }*/
 function updateEventList(events) {
+ 51-filter-todo-list
   const eventList = document.getElementById("eventList");
   eventList.innerHTML = ""; // Clear existing list
 
@@ -98,6 +99,52 @@ function updateEventList(events) {
     listItem.appendChild(editButton);
     eventList.appendChild(listItem);
   });
+
+	var eventList = document.getElementById("eventList");
+	eventList.innerHTML = ""; // Clear existing list
+
+	sortList(events);
+
+	// Iterate through the events and create list items
+	events.forEach(function (event) {
+		var listItem = document.createElement("li");
+
+
+		// Create a span for event-info
+		var eventInfo = document.createElement("span");
+		eventInfo.className = "liEvents";
+		eventInfo.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
+		listItem.appendChild(eventInfo);
+
+		// Creata a edit-button
+		const editButton = document.createElement("button");
+		editButton.className = "editButton";
+		editButton.onclick = function () {
+
+		};
+		listItem.appendChild(editButton);
+
+		
+
+		// Create a delete-button 
+		const deleteButton = document.createElement("button");
+		deleteButton.className = "deleteButton";
+		deleteButton.dataset.cy = "delete-todo-button";
+		deleteButton.onclick = function () {
+			// Handle delete-button
+			// event
+			// 1. Ta bort eventet från arren av events
+			// 2. Rendera om hela DOM-listan
+			const listItem = this.parentNode;
+            const eventList = listItem.parentNode;
+
+			eventList.removeChild(listItem);
+		};
+
+		listItem.appendChild(deleteButton);
+        eventList.appendChild(listItem);
+	});
+ main
 }
 
 function sortList(events) {

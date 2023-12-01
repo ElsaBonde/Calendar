@@ -40,11 +40,17 @@ const renderCalendar = () => {
   }
 */
   for (let i = firstDayofMonth; i > 0; i--) {
+ 51-filter-todo-list
     liTag += `<li class="inactive" data-cy="calendar-cell" data-date="${currYear}-${currMonth
       .toString()
       .padStart(2, "0")}-${
       lastDateofLastMonth - i + (1).toString().padStart(2, "0")
     }">${lastDateofLastMonth - i + 1}</li>`;
+
+    liTag += `<li class="inactive" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${
+      lastDateofLastMonth - i + 1
+    }</span></li>`;
+ main
   }
   /* for (let i = 1; i <= lastDateofMonth; i++) {
     let isToday =
@@ -53,7 +59,7 @@ const renderCalendar = () => {
       currYear === new Date().getFullYear()
         ? "active"
         : "";
-    liTag += `<li class="${isToday}" data-cy="calendar-cell">${i}</li>`;
+    liTag += `<li class="${isToday}" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${i}</span></li>`;
   }
 */
   for (let i = 1; i <= lastDateofMonth; i++) {
@@ -71,6 +77,7 @@ const renderCalendar = () => {
   }
   /*
   for (let i = lastDayofMonth; i < 6; i++) {
+ 51-filter-todo-list
     liTag += `<li class="inactive" data-cy="calendar-cell">${
       i - lastDayofMonth + 1
     }</li>`;
@@ -84,6 +91,11 @@ const renderCalendar = () => {
       .padStart(2, "0")}-${
       i - lastDayofMonth + (1).toString().padStart(2, "0")
     }">${i - lastDayofMonth + 1}</li>`;
+
+    liTag += `<li class="inactive" data-cy="calendar-cell"><span data-cy="calendar-cell-date">${
+      i - lastDayofMonth + 1
+    }</span>npm </li>`;
+ main
   }
 
   // Uppdatera månadsnamnet i HTML
@@ -125,6 +137,7 @@ function handleMonthChange() {
 
   // Render the calendar with the updated values for the year and month
   renderCalendar();
+ 51-filter-todo-list
 
    //uppdaterar klicken för datumcellerna i kalendern
    updateDateClickHandlers();
@@ -141,3 +154,5 @@ function updateDateClickHandlers() {
     cell.addEventListener("click", showEventsForDate); // Lägg till uppdaterad klickhändelse
   });
 }
+}
+ main
