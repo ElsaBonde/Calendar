@@ -127,7 +127,7 @@ aside {
 }
 
 .deleteButton {
-  background-image: url(Delete.png);
+  background-image: url(img/Delete.png);
   background-size: contain;
   height: 1.875rem;
   width: 1.875rem;
