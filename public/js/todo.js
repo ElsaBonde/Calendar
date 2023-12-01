@@ -103,20 +103,6 @@ function fillEditModal(selectedEvent) {
 
 function updateEventInLocalStorage(index) {
 	console.log('Index in updateEventInLocalStorage:', index); 
-	/* const existingEvents = JSON.parse(localStorage.getItem('events')) || [];
-    
-    // Hämta de uppdaterade värdena från input-fälten i modalen
-    const updatedTitle = document.getElementById('editTitle').value;
-    const updatedDate = document.getElementById('editDate').value;
-    const updatedTime = document.getElementById('editTime').value;
-
-    //uppdaterar eventet med de nya värdena
-    existingEvents[index].title = updatedTitle;
-    existingEvents[index].date = updatedDate;
-    existingEvents[index].time = updatedTime;
-
-    //sparar den uppdaterade events-arrayen till LS
-    localStorage.setItem('events', JSON.stringify(existingEvents)); */
 
 	console.log('Index in updateEventInLocalStorage:', index); 
     const existingEvents = JSON.parse(localStorage.getItem('events')) || [];
