@@ -1,83 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./CSS/toDoForm.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
     <link rel="stylesheet" href="./CSS/toDoForm.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-</head>
-<body onload="loadEvents()">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body onload="loadEvents()">
     <header>
-        <div class="monthAndArrows">
-            <p id="prevMonth" class="fas fa-chevron-left" data-cy="prev-month"></p>
-            <span class="activeMonth"></span>
-            <span id="nextMonth" class="fas fa-chevron-right" data-cy="next-month"></span>
-        </div>
+      <div class="monthAndArrows">
+        <p id="prevMonth" class="fas fa-chevron-left" data-cy="prev-month"></p>
+        <span class="activeMonth"></span>
+        <span
+          id="nextMonth"
+          class="fas fa-chevron-right"
+          data-cy="next-month"
+        ></span>
+      </div>
     </header>
     <div class="container-grid">
-        <!-- Aside Section -->
-        <aside data-cy="welcome-segment">
-            <div id="clock"></div>
-            <div class="flex">
-            <div class="today-container">
-                <div class="today-title">
-                    <p class="p-today"> <!-- hämta weekday från js --> <span id="todayNumbers"></span></p>
-                </div>
-				<ul id="eventList" data-cy="todo-list"></ul>
+      <!-- Aside Section -->
+      <aside data-cy="welcome-segment">
+        <div id="clock"></div>
+        <div class="flex">
+          <div class="today-container">
+            <div class="today-title">
+              <p class="p-today">
+                <!-- hämta weekday från js -->
+                <span id="todayNumbers"></span>
+              </p>
             </div>
-			<button onclick="openModal()" data-cy="todo-reveal-form">Add To do +</button>
-        </div>
-        </aside>
+            <ul id="eventList" data-cy="todo-list"></ul>
+          </div>
+          <button onclick="openModal()" data-cy="todo-reveal-form">
+            Add To do +
+           <!-- <div class="date-filter">
+            <label for="filterDate">Filter by Date</label>
+            <input type="date" id="filterDate" />
+            <button onclick="filterByDate()" data-cy="filter-by-date-button">
+              Filter
+            </button>
+          </div>
+        </div>-->
+      </aside>
 
-        <!-- Main Section -->
-        <main>
-            <div class="wrapper">
-                <p class="current-date"></p>
-                <div class="calendar">
-                    <ul class="weeks">
-                        <li class="allDays">MON</li>
-                        <li class="allDays">TUE</li>
-                        <li class="allDays">WED</li>
-                        <li class="allDays">THU</li>
-                        <li class="allDays">FRI</li>
-                        <li class="allDays">SAT</li>
-                        <li class="allDays">SUN</li>
-                    </ul>
-                    <ul class="days" data-cy="calendar-body">
-                        <li class="inactive" data-cy="calendar-cell"></li>
-                    </ul>
-                </div>
-            </div>
-        </main>
+      <!-- Main Section -->
+      <main>
+        <div class="wrapper">
+          <p class="current-date"></p>
+          <div class="calendar">
+            <ul class="weeks">
+              <li class="allDays">MON</li>
+              <li class="allDays">TUE</li>
+              <li class="allDays">WED</li>
+              <li class="allDays">THU</li>
+              <li class="allDays">FRI</li>
+              <li class="allDays">SAT</li>
+              <li class="allDays">SUN</li>
+            </ul>
+            <ul class="days" data-cy="calendar-body">
+              <li class="inactive" data-cy="calendar-cell"></li>
+            </ul>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- Modal Section -->
     <div id="todoModal" class="modal">
-        <div class="modal-content">
-            <span onclick="closeModal()" style="cursor: pointer; font-size: 36px; display: flex">&times;</span>
-            <form action="" method="" id="todoForm">
-                <label for="title">Title</label>
-                <input type="text" id="titleToDo" placeholder="Title" required data-cy="todo-title-input"/>
-                <label for="Date">Date</label>
-                <input type="date" id="dateToDo" aria-label="Date" data-cy="todo-date-input" required/>
-                <label for="timeToDo">Time</label>
-                <input type="time" id="timeToDo" required />
-            </form>
-            <input type="submit" form="todoForm" value="Add" onclick="addEvent()" data-cy="save-todo-button"/>
-        </div>
+      <div class="modal-content">
+        <span
+          onclick="closeModal()"
+          style="cursor: pointer; font-size: 36px; display: flex"
+          >&times;</span
+        >
+        <form action="" method="" id="todoForm">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            id="titleToDo"
+            placeholder="Title"
+            required
+            data-cy="todo-title-input"
+          />
+          <label for="Date">Date</label>
+          <input
+            type="date"
+            id="dateToDo"
+            aria-label="Date"
+            data-cy="todo-date-input"
+            required
+          />
+          <label for="timeToDo">Time</label>
+          <input type="time" id="timeToDo" required />
+        </form>
+        <input
+          type="submit"
+          form="todoForm"
+          value="Add"
+          onclick="addEvent()"
+          data-cy="save-todo-button"
+        />
+      </div>
     </div>
 
     <!-- Scripts Section -->
@@ -85,5 +146,5 @@
     <script src="js/calendar.js" defer></script>
     <script src="js/today.js"></script>
     <script src="js/todo.js"></script>
-</body>
+  </body>
 </html>
