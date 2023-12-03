@@ -88,10 +88,10 @@
                 <input type="text" id="editTitle" placeholder="Title"/>
                 <label for="editDate">Date</label>
                 <input type="date" id="editDate" aria-label="Date" required/>
-                <label for="timeToDo">Time</label>
-                <input type="time" id="editTime" required />
+                <label for="editTime">Time</label>
+                <input type="time" id="editTime" required/>
             </form>
-            <input type="submit" form="editForm" value="Update" onclick="updateEventInLocalStorage(this.getAttribute('data-index'))" data-index="0" data-cy="edit-todo-button"/>
+            <input type="submit" form="editForm" value="Update" onclick="updateEventInLocalStorage()" data-index="0" data-cy="edit-todo-button"/>
         </div>
     </div>
 

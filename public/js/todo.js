@@ -1,9 +1,11 @@
 /**Open modal function */
 
 var existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
+let selectedId = ""; //håller koll på ID i event
+
+sortList(existingEvents);
 
 function openModal() {
-  console.log("openModal function is called!");
   document.getElementById("todoModal").style.display = "flex"; // Change 'flex' to 'block' if you prefer
 }
 
@@ -33,6 +35,7 @@ function addEvent() {
     title: title,
     date: date,
     time: time,
+    id: title + date + time, //skapar unikt id för varje todo
   };
 
   // Retrieve existing todos from local storage
@@ -56,21 +59,20 @@ function addEvent() {
 
 function sortList(todos) {
   //sorterar både datum och tid, tar in två parametrar för att jämföra
-  todos.sort((a, b) => {
+  const sortedList = todos.sort((a, b) => {
     //hämtar datum och tid för a och b (aDateTime för a och bDateTime för b). dessa representerar två element i eventlistan
     const aDateTime = `${a.date} ${a.time}`;
     const bDateTime = `${b.date} ${b.time}`;
     //jämför a och b mot varandra genom localCompare och retunerar ett värde som på så vis byter plats på items
     return aDateTime.localeCompare(bDateTime);
   });
+  localStorage.setItem("todos", JSON.stringify(sortedList));
 }
 
 // Function to update the event list on the page
 function updateEventList(todos) {
   const eventList = document.getElementById("eventList");
   eventList.innerHTML = ""; // Clear existing list
-
-  sortList(todos);
 
   // Iterate through the todos and create list items
   todos.forEach(function (event) {
@@ -80,6 +82,7 @@ function updateEventList(todos) {
     var eventInfo = document.createElement("span");
     eventInfo.className = "liEvents";
     eventInfo.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
+
     listItem.appendChild(eventInfo);
 
     // Creata a button
@@ -100,8 +103,11 @@ function updateEventList(todos) {
 
 function handleEditClick(event, existingEvents) {
   const listItem = event.target.parentElement; //listelementet som innehåller det klickade editButton
+
   const index = Array.from(listItem.parentNode.children).indexOf(listItem); //hitta index för listelementet i dess förälders children
   const selectedEvent = existingEvents[index];
+  selectedId = selectedEvent.id;
+
   fillEditModal(selectedEvent);
 }
 
@@ -113,28 +119,37 @@ function fillEditModal(selectedEvent) {
   document.getElementById("editModal").style.display = "flex";
 }
 
-function updateEventInLocalStorage(index) {
+function updateListIdById(dataList, idToUpdate, newValues) {
+  //restunerar objekt
+  const itemToUpdate = dataList.find((item) => item.id === idToUpdate);
+
+  //uppdatera objektet med de nya värderna
+  if (idToUpdate) {
+    Object.assign(itemToUpdate, newValues);
+  }
+}
+
+function updateEventInLocalStorage() {
   const existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
 
-  // Hämta de uppdaterade värdena från input-fälten i modalen
+  //hämta de uppdaterade värdena från input-fälten i modalen FUNKAR
   const updatedTitle = document.getElementById("editTitle").value;
   const updatedDate = document.getElementById("editDate").value;
   const updatedTime = document.getElementById("editTime").value;
 
-  // Skapa en ny event-objekt med de uppdaterade värdena
+  //skapa ett nytt event-objekt med de uppdaterade värdena
   const updatedEvent = {
     title: updatedTitle,
     date: updatedDate,
     time: updatedTime,
   };
 
-  // Uppdatera det befintliga event-objektet i listan med de nya värdena
-  existingEvents.splice(index, 1, updatedEvent);
+  updateListIdById(existingEvents, selectedId, updatedEvent);
 
-  // Spara den uppdaterade todos-arrayen till localStorage
+  //spara den uppdaterade todos-arrayen till localStorage funkar inte heller
   localStorage.setItem("todos", JSON.stringify(existingEvents));
 
-  // Uppdatera DOMen med de nya uppdaterade händelserna
+  //uppdatera DOMen med de nya uppdaterade händelserna funkar inte med alla värden i objektet
   updateEventList(existingEvents);
 }
 
