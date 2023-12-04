@@ -89,6 +89,10 @@ function fillEditModal(selectedEvent) {
 	document.getElementById("editDate").value = selectedEvent.date;
 	document.getElementById("editTime").value = selectedEvent.time;
 
+
+function showEventsForDate(event) {
+	const clickedDate = event.target.dataset.date;
+	console.log("Clicked Date:", clickedDate);
 	document.getElementById("editModal").style.display = "flex";
 }
 
@@ -98,6 +102,12 @@ function updateEventInLocalStorage() {
 		const updatedDate = document.getElementById("editDate").value;
 		const updatedTime = document.getElementById("editTime").value;
 
+	if (clickedDate) {
+		const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
+
+		const eventsForDate = existingEvents.filter(
+			(evt) => evt.date === clickedDate
+		);
 		const updatedEvent = {
 			title: updatedTitle,
 			date: updatedDate,
@@ -113,6 +123,7 @@ function updateEventInLocalStorage() {
 		closeModal();
 	}
 }
+
 
 function loadEvents() {
 	var existingEvents = JSON.parse(localStorage.getItem("events")) || [];
