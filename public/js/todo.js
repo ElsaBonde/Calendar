@@ -81,6 +81,7 @@ let selectedDate = null;
 
 function showEventsForDate(event) {
 	const clickedDate = event.target.dataset.date;
+	console.log("Clicked Date:", clickedDate);
 
 	if (selectedDate === clickedDate) {
 		loadEvents();
@@ -89,14 +90,9 @@ function showEventsForDate(event) {
 	}
 
 	if (clickedDate) {
-		const [clickedYear, clickedMonth, clickedDay] = clickedDate.split("-");
 		const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
 
-		const eventsForYear = existingEvents.filter((evt) =>
-			evt.date.startsWith(`${clickedYear}`)
-		);
-
-		const eventsForDate = eventsForYear.filter(
+		const eventsForDate = existingEvents.filter(
 			(evt) => evt.date === clickedDate
 		);
 
@@ -104,6 +100,7 @@ function showEventsForDate(event) {
 		selectedDate = clickedDate;
 	}
 }
+
 
 function loadEvents() {
 	const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
