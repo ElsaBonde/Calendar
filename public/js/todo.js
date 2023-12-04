@@ -1,15 +1,22 @@
+// Open modal function
+var existingEvents = JSON.parse(localStorage.getItem("events")) || [];
+let selectedEventIndex = -1; // Holds the index of the selected event
+
+sortList(existingEvents);
+
 function openModal() {
-	console.log("openModal function is called!");
-	document.getElementById("todoModal").style.display = "flex"; // Change 'flex' to 'block' if you prefer
+	document.getElementById("todoModal").style.display = "flex";
 }
 
 function closeModal() {
 	document.getElementById("todoModal").style.display = "none";
+	document.getElementById("editModal").style.display = "none";
 }
 
 window.onclick = function (event) {
 	const modal = document.getElementById("todoModal");
-	if (event.target == modal) {
+	const editModal = document.getElementById("editModal");
+	if (event.target == modal || event.target == editModal) {
 		modal.style.display = "none";
 	}
 };
@@ -23,6 +30,7 @@ function addEvent() {
 		title: title,
 		date: date,
 		time: time,
+		id: generateUniqueId(), // Function to generate a unique ID
 	};
 
 	var existingEvents = JSON.parse(localStorage.getItem("events")) || [];
@@ -36,13 +44,16 @@ function addEvent() {
 	loadEvents();
 }
 
+function generateUniqueId() {
+	// Function to generate a unique ID
+	return Date.now().toString();
+}
+
 function updateEventList(events) {
 	const eventList = document.getElementById("eventList");
-	eventList.innerHTML = ""; // Clear existing list
+	eventList.innerHTML = "";
 
-	sortList(events);
-
-	events.forEach(function (event) {
+	events.forEach(function (event, index) {
 		const listItem = document.createElement("li");
 
 		const eventInfo = document.createElement("span");
@@ -52,42 +63,44 @@ function updateEventList(events) {
 
 		const editButton = document.createElement("button");
 		editButton.className = "editButton";
-		editButton.onclick = function () {};
+		editButton.addEventListener("click", function () {
+			handleEditClick(index);
+		});
 		listItem.appendChild(editButton);
 
 		const deleteButton = document.createElement("button");
 		deleteButton.className = "deleteButton";
 		deleteButton.dataset.cy = "delete-todo-button";
-		deleteButton.onclick = function () {
-			const listItem = this.parentNode;
-			const eventList = listItem.parentNode;
-			eventList.removeChild(listItem);
-		};
-
 		listItem.appendChild(deleteButton);
+
 		eventList.appendChild(listItem);
 	});
 }
 
-function sortList(events) {
-	events.sort((a, b) => {
-		const aDateTime = `${a.date} ${a.time}`;
-		const bDateTime = `${b.date} ${b.time}`;
-		return aDateTime.localeCompare(bDateTime);
-	});
+function handleEditClick(index) {
+	selectedEventIndex = index;
+	const selectedEvent = existingEvents[index];
+
+	fillEditModal(selectedEvent);
 }
 
-let selectedDate = null;
+function fillEditModal(selectedEvent) {
+	document.getElementById("editTitle").value = selectedEvent.title;
+	document.getElementById("editDate").value = selectedEvent.date;
+	document.getElementById("editTime").value = selectedEvent.time;
+
 
 function showEventsForDate(event) {
 	const clickedDate = event.target.dataset.date;
 	console.log("Clicked Date:", clickedDate);
+	document.getElementById("editModal").style.display = "flex";
+}
 
-	if (selectedDate === clickedDate) {
-		loadEvents();
-		selectedDate = null;
-		return;
-	}
+function updateEventInLocalStorage() {
+	if (selectedEventIndex !== -1) {
+		const updatedTitle = document.getElementById("editTitle").value;
+		const updatedDate = document.getElementById("editDate").value;
+		const updatedTime = document.getElementById("editTime").value;
 
 	if (clickedDate) {
 		const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
@@ -95,15 +108,25 @@ function showEventsForDate(event) {
 		const eventsForDate = existingEvents.filter(
 			(evt) => evt.date === clickedDate
 		);
+		const updatedEvent = {
+			title: updatedTitle,
+			date: updatedDate,
+			time: updatedTime,
+		};
 
-		updateEventList(eventsForDate);
-		selectedDate = clickedDate;
+		existingEvents[selectedEventIndex] = updatedEvent;
+
+		localStorage.setItem("events", JSON.stringify(existingEvents));
+
+		updateEventList(existingEvents);
+
+		closeModal();
 	}
 }
 
 
 function loadEvents() {
-	const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
+	var existingEvents = JSON.parse(localStorage.getItem("events")) || [];
 	updateEventList(existingEvents);
 }
 
