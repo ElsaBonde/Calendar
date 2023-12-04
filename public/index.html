@@ -36,12 +36,12 @@
                 <div class="today-title">
                     <p class="p-today"> <!-- hämta weekday från js --> <span id="todayNumbers"></span></p>
                 </div>
-				<ul id="eventList" data-cy="todo-list"></ul>
+                <ul id="eventList" data-cy="todo-list"></ul>
             </div>
-			<button onclick="openModal()" data-cy="todo-reveal-form">Add To do +</button>
+            <button onclick="openModal()" data-cy="todo-reveal-form">Add To do +</button>
         </div>
         </aside>
-
+ 
         <!-- Main Section -->
         <main>
             <div class="wrapper">
@@ -63,7 +63,7 @@
             </div>
         </main>
     </div>
-
+ 
     <!-- Modal Section -->
     <div id="todoModal" class="modal">
         <div class="modal-content">
@@ -79,7 +79,7 @@
             <input type="submit" form="todoForm" value="Add" onclick="addEvent()" data-cy="save-todo-button"/>
         </div>
     </div>
-
+ 
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span onclick="closeModal()" style="cursor: pointer; font-size: 36px; display: flex">&times;</span>
@@ -94,7 +94,7 @@
             <input type="submit" form="editForm" value="Update" onclick="updateEventInLocalStorage()" data-index="0" data-cy="edit-todo-button"/>
         </div>
     </div>
-
+ 
     <!-- Scripts Section -->
     <script src="main.js"></script>
     <script src="js/calendar.js" defer></script>
