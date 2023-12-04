@@ -59,8 +59,6 @@ aside {
   padding: 0.5rem;
   border-radius: 0.5rem;
   color: #f5f931;
-  height: 6vh;
-  width: 11.5vh;
   margin: 0 auto;
   border: 1px solid rgb(184, 184, 184);
   align-self: center;
@@ -122,6 +120,14 @@ aside {
 
 .editButton {
   background-image: url(img/Edit.png);
+  background-size: contain;
+  height: 1.875rem;
+  width: 1.875rem;
+  border-radius: 50%;
+}
+
+.deleteButton {
+  background-image: url(img/Delete.png);
   background-size: contain;
   height: 1.875rem;
   width: 1.875rem;
@@ -252,8 +258,7 @@ main {
   }
 
   #clock {
-    height: 4vh;
-    width: 9vh;
+
     font-size: 15px;
   }
 }
@@ -293,8 +298,6 @@ main {
   }
 
   #clock {
-    height: 3.4vh;
-    width: 8vh;
     font-size: 12px;
   }
 }
