@@ -21,6 +21,7 @@ window.onclick = function (event) {
 	const editModal = document.getElementById("editModal");
 	if (event.target == modal || event.target == editModal) {
 		modal.style.display = "none";
+		editModal.style.display = "none";
 	}
 };
 
@@ -91,7 +92,8 @@ function updateEventList(todos) {
 		eventList.appendChild(listItem);
 
 		// delete button
-		var deleteButton = document.createElement("button");
+		const deleteButton = document.createElement("button");
+		deleteButton.setAttribute("data-cy", "delete-todo-button");
 		deleteButton.className = "deleteButton";
 		listItem.appendChild(deleteButton);
 
@@ -119,7 +121,6 @@ function handleEditClick(event, existingEvents) {
 
 	fillEditModal(selectedEvent);
 }
-
 
 // delete function
 function handleDeleteClick(event, todos) {
