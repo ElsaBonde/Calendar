@@ -90,6 +90,7 @@ function updateEventList(todos) {
 		const editButton = document.createElement("button");
 		editButton.setAttribute("data-cy", "edit-todo-button");
 		editButton.className = "editButton";
+		editButton.innerHTML = '<i class="far fa-pen-to-square" style="color: #000000;"></i>';
 		listItem.appendChild(editButton);
 		eventList.appendChild(listItem);
 
@@ -97,6 +98,7 @@ function updateEventList(todos) {
 		const deleteButton = document.createElement("button");
 		deleteButton.setAttribute("data-cy", "delete-todo-button");
 		deleteButton.className = "deleteButton";
+		deleteButton.innerHTML = '<i class="fa-regular fa-trash-can" style="color: #000000;"></i>'
 		listItem.appendChild(deleteButton);
 
 		eventList.appendChild(listItem);
