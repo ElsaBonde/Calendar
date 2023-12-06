@@ -21,6 +21,7 @@ window.onclick = function (event) {
 	const editModal = document.getElementById("editModal");
 	if (event.target == modal || event.target == editModal) {
 		modal.style.display = "none";
+		editModal.style.display = "none";
 	}
 };
 
@@ -74,7 +75,6 @@ function updateEventList(todos) {
 	const eventList = document.getElementById("eventList");
 	eventList.innerHTML = ""; // Clear existing list
 
-	// Iterate through the todos and create list items
 	todos.forEach(function (event) {
 		var listItem = document.createElement("li");
 
@@ -85,11 +85,20 @@ function updateEventList(todos) {
 
 		listItem.appendChild(eventInfo);
 
+
 		// Creata a button
 		const editButton = document.createElement("button");
 		editButton.setAttribute("data-cy", "edit-todo-button");
 		editButton.className = "editButton";
 		listItem.appendChild(editButton);
+		eventList.appendChild(listItem);
+
+		// delete button
+		const deleteButton = document.createElement("button");
+		deleteButton.setAttribute("data-cy", "delete-todo-button");
+		deleteButton.className = "deleteButton";
+		listItem.appendChild(deleteButton);
+
 		eventList.appendChild(listItem);
 	});
 
@@ -98,10 +107,13 @@ function updateEventList(todos) {
 		.addEventListener("click", function (event) {
 			if (event.target.classList.contains("editButton")) {
 				handleEditClick(event, existingEvents);
+			} else if (event.target.classList.contains("deleteButton")) {
+				handleDeleteClick(event, todos);
 			}
 		});
 }
 
+// edit function
 function handleEditClick(event, existingEvents) {
 	const listItem = event.target.parentElement; //listelementet som innehåller det klickade editButton
 
@@ -110,6 +122,18 @@ function handleEditClick(event, existingEvents) {
 	selectedId = selectedEvent.id;
 
 	fillEditModal(selectedEvent);
+}
+
+// delete function
+function handleDeleteClick(event, todos) {
+	const listItem = event.target.parentElement;
+	const index = Array.from(listItem.parentNode.children).indexOf(listItem);
+	const selectedEvent = todos[index];
+
+	// deletes the events from the array
+	todos.splice(index, 1);
+	localStorage.setItem("todos", JSON.stringify(todos));
+	updateEventList(todos);
 }
 
 function fillEditModal(selectedEvent) {
