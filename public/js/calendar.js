@@ -54,10 +54,6 @@ const renderCalendar = () => {
 
 renderCalendar();
 
-const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
-calendarCells.forEach((cell) => {
-  cell.addEventListener("click", showEventsForDate);
-});
 
 prevIcon.addEventListener("click", () => {
   currMonth -= 1;
@@ -81,13 +77,4 @@ function handleMonthChange() {
   renderCalendar();
   updateDateClickHandlers();
   loadEvents();
-}
-
-function updateDateClickHandlers() {
-  const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
-  
-  calendarCells.forEach((cell) => {
-    cell.removeEventListener("click", showEventsForDate);
-    cell.addEventListener("click", showEventsForDate);
-  });
 }
