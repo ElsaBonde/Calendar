@@ -41,7 +41,7 @@ function addEvent() {
 	existingEvents.push(newEvent);
 
 	localStorage.setItem("todos", JSON.stringify(existingEvents));
-	
+
 	updateEventList(existingEvents);
 	closeModal();
 	loadEvents();
@@ -59,7 +59,7 @@ function sortList(todos) {
 // Function to update the event list on the page
 function updateEventList(todos) {
 	const eventList = document.getElementById("eventList");
-	eventList.innerHTML = ""; 
+	eventList.innerHTML = "";
 
 	todos.forEach(function (event) {
 		var listItem = document.createElement("li");
@@ -119,14 +119,16 @@ function handleEditClick(event, existingEvents) {
 function handleDeleteClick(event, todos) {
 	const listItem = event.target.closest("li");
 
-	if (listItem) {
-		const index = Array.from(listItem.parentNode.children).indexOf(listItem);
+	if (listItem && listItem.parentNode) {
+		if (listItem) {
+			const index = Array.from(listItem.parentNode.children).indexOf(listItem);
 
-		const removedEvent = todos.splice(index, 1)[0]; // Remove the event from the array
-		localStorage.setItem("todos", JSON.stringify(todos));
-		updateEventList(todos);
+			const removedEvent = todos.splice(index, 1)[0]; // Remove the event from the array
+			localStorage.setItem("todos", JSON.stringify(todos));
+			updateEventList(todos);
 
-		console.log("Deleted Event:", removedEvent);
+			console.log("Deleted Event:", removedEvent);
+		}
 	}
 }
 
