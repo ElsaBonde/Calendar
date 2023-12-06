@@ -75,6 +75,5 @@ function handleMonthChange() {
   }
 
   renderCalendar();
-  updateDateClickHandlers();
   loadEvents();
 }
