@@ -148,9 +148,9 @@ function updateListIdById(dataList, idToUpdate, newValues) {
 
 function updateEventInLocalStorage() {
 	const existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
-	const updatedTitle = document.getElementById("editTitle").value;
-	const updatedDate = document.getElementById("editDate").value;
-	const updatedTime = document.getElementById("editTime").value;
+	const updatedTitle = document.getElementById("titleToDo").value;
+	const updatedDate = document.getElementById("dateToDo").value;
+	const updatedTime = document.getElementById("timeToDo").value;
 
 	const updatedEvent = {
 		title: updatedTitle,
