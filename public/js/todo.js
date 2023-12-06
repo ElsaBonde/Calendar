@@ -5,22 +5,20 @@ sortList(existingEvents);
 
 // Open modal function
 function openModal() {
+	document.getElementById("saveToDoButton").onclick = addEvent;
 	document.getElementById("todoModal").style.display = "flex"; // Change 'flex' to 'block' if you prefer
 }
 
 // Function to close the modal
 function closeModal() {
 	document.getElementById("todoModal").style.display = "none";
-	document.getElementById("editModal").style.display = "none";
 }
 
 // Close the modal if the user clicks outside the modal
 window.onclick = function (event) {
 	const modal = document.getElementById("todoModal");
-	const editModal = document.getElementById("editModal");
-	if (event.target == modal || event.target == editModal) {
+	if (event.target == modal) {
 		modal.style.display = "none";
-		editModal.style.display = "none";
 	}
 };
 
@@ -133,11 +131,12 @@ function handleDeleteClick(event, todos) {
 }
 
 function fillEditModal(selectedEvent) {
-	document.getElementById("editTitle").value = selectedEvent.title;
-	document.getElementById("editDate").value = selectedEvent.date;
-	document.getElementById("editTime").value = selectedEvent.time;
+	document.getElementById("titleToDo").value = selectedEvent.title;
+	document.getElementById("dateToDo").value = selectedEvent.date;
+	document.getElementById("timeToDo").value = selectedEvent.time;
+	document.getElementById("saveToDoButton").onclick = updateEventInLocalStorage;
 
-	document.getElementById("editModal").style.display = "flex";
+	document.getElementById("todoModal").style.display = "flex";
 }
 
 function updateListIdById(dataList, idToUpdate, newValues) {
