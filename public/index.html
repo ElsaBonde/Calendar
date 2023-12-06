@@ -69,22 +69,7 @@
                 <label for="timeToDo">Time</label>
                 <input type="time" id="timeToDo"/>
             </form>
-            <input type="submit" form="todoForm" value="Add" onclick="addEvent()" data-cy="save-todo-button"/>
-        </div>
-    </div>
- 
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span onclick="closeModal()" style="cursor: pointer; font-size: 36px; display: flex">&times;</span>
-            <form action="" method="" id="editForm">
-                <label for="editTitle">Title</label>
-                <input type="text" id="editTitle" placeholder="Title"/>
-                <label for="editDate">Date</label>
-                <input type="date" id="editDate" aria-label="Date" required/>
-                <label for="editTime">Time</label>
-                <input type="time" id="editTime"/>
-            </form>
-            <input type="submit" form="editForm" value="Update" onclick="updateEventInLocalStorage()" data-index="0" data-cy="edit-todo-button"/>
+            <input type="submit" id="saveToDoButton" form="todoForm" value="Save" data-cy="save-todo-button"/>
         </div>
     </div>
  
