@@ -85,8 +85,10 @@ function updateEventList(todos) {
 
 		listItem.appendChild(eventInfo);
 
-		// edit button
-		var editButton = document.createElement("button");
+
+		// Creata a button
+		const editButton = document.createElement("button");
+		editButton.setAttribute("data-cy", "edit-todo-button");
 		editButton.className = "editButton";
 		listItem.appendChild(editButton);
 		eventList.appendChild(listItem);
