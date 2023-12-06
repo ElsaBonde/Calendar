@@ -1,10 +1,9 @@
-/**Open modal function */
-
 var existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
 let selectedId = ""; //håller koll på ID i event
 
 sortList(existingEvents);
 
+/**Open modal function */
 function openModal() {
 	document.getElementById("todoModal").style.display = "flex"; // Change 'flex' to 'block' if you prefer
 }
@@ -85,12 +84,15 @@ function updateEventList(todos) {
 
 		listItem.appendChild(eventInfo);
 
-
 		// Creata a button
 		const editButton = document.createElement("button");
 		editButton.setAttribute("data-cy", "edit-todo-button");
 		editButton.className = "editButton";
-		editButton.innerHTML = '<i class="far fa-pen-to-square" style="color: #000000;"></i>';
+		editButton.innerHTML =
+			'<i class="far fa-pen-to-square" style="color: #000000;"></i>';
+		editButton.addEventListener("click", (event) => {
+			handleEditClick(event, existingEvents);
+		});
 		listItem.appendChild(editButton);
 		eventList.appendChild(listItem);
 
@@ -98,28 +100,28 @@ function updateEventList(todos) {
 		const deleteButton = document.createElement("button");
 		deleteButton.setAttribute("data-cy", "delete-todo-button");
 		deleteButton.className = "deleteButton";
-		deleteButton.innerHTML = '<i class="fa-regular fa-trash-can" style="color: #000000;"></i>'
+		deleteButton.innerHTML =
+			'<i class="fa-regular fa-trash-can" style="color: #000000;"></i>';
+		deleteButton.addEventListener("click", (event) => {
+			handleDeleteClick(event, existingEvents);
+		});
 		listItem.appendChild(deleteButton);
 
 		eventList.appendChild(listItem);
 	});
-
-	document
-		.getElementById("eventList")
-		.addEventListener("click", function (event) {
-			if (event.target.classList.contains("editButton")) {
-				handleEditClick(event, existingEvents);
-			} else if (event.target.classList.contains("deleteButton")) {
-				handleDeleteClick(event, todos);
-			}
-		});
 }
 
 // edit function
 function handleEditClick(event, existingEvents) {
-	const listItem = event.target.parentElement; //listelementet som innehåller det klickade editButton
+	const listItem = event.target.closest("li");
 
-	const index = Array.from(listItem.parentNode.children).indexOf(listItem); //hitta index för listelementet i dess förälders children
+	const index = Array.from(listItem.parentNode.children).indexOf(listItem);
+
+	// Check if the index is valid
+	if (index === -1 || index >= existingEvents.length) {
+		console.error("Invalid index:", index);
+	}
+
 	const selectedEvent = existingEvents[index];
 	selectedId = selectedEvent.id;
 
@@ -128,14 +130,22 @@ function handleEditClick(event, existingEvents) {
 
 // delete function
 function handleDeleteClick(event, todos) {
-	const listItem = event.target.parentElement;
-	const index = Array.from(listItem.parentNode.children).indexOf(listItem);
-	const selectedEvent = todos[index];
+	const listItem = event.target.closest("li");
 
-	// deletes the events from the array
-	todos.splice(index, 1);
-	localStorage.setItem("todos", JSON.stringify(todos));
-	updateEventList(todos);
+	if (listItem) {
+		const index = Array.from(listItem.parentNode.children).indexOf(listItem);
+
+		// Remove the event from the array
+		const removedEvent = todos.splice(index, 1)[0];
+
+		// Save the updated todos array back to local storage
+		localStorage.setItem("todos", JSON.stringify(todos));
+
+		// Update the event list on the page
+		updateEventList(todos);
+
+		console.log("Deleted Event:", removedEvent);
+	}
 }
 
 function fillEditModal(selectedEvent) {
@@ -185,3 +195,20 @@ function loadEvents() {
 	var existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
 	updateEventList(existingEvents);
 }
+
+document
+	.getElementById("eventList")
+	.addEventListener("click", function (event) {
+		const editButton = event.target.closest(".editButton");
+		const deleteButton = event.target.closest(".deleteButton");
+
+		if (editButton) {
+			handleEditClick(event, existingEvents);
+		} else if (deleteButton) {
+			handleDeleteClick(event, existingEvents);
+		}
+	});
+
+window.onload = function () {
+	loadEvents();
+};
