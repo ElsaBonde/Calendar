@@ -22,6 +22,11 @@ const months = [
   "December",
 ];
 
+function getTodosForDate(targetDate) {
+  const allTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  return allTodos.filter(todo => todo.date === targetDate);
+}
+
 const renderCalendar = () => {
   let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
@@ -46,7 +51,18 @@ const renderCalendar = () => {
       currYear === new Date().getFullYear()
         ? "active"
         : "";
-    liTag += `<li class="${isToday}" data-cy="calendar-cell" onclick="filterEvents(${i})"><span data-cy="calendar-cell-date">${i}</span></li>`;
+    let targetDate = `${currYear}-${(currMonth + 1).toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`;
+    let todosForDate = getTodosForDate(targetDate);
+    let todoCountElement = "";
+
+    if (todosForDate.length) {
+      todoCountElement = `<div class="todo-count" data-cy="calendar-cell-todos">${todosForDate.length}</div>`;
+    }
+
+    liTag += `<li class="${isToday}" data-cy="calendar-cell" onclick="filterEvents(${i})">
+                  <span data-cy="calendar-cell-date">${i}</span>
+                  ${todoCountElement}
+               </li>`;
   }
 
   for (let i = lastDayofMonth; i < 6; i++) {

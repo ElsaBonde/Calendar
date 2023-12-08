@@ -118,6 +118,21 @@ aside {
   margin-bottom: 0.3rem;
 }
 
+.todo-count {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: #f5f931;
+  color: #333; 
+  padding: 5px; 
+  border-radius: 100%; 
+  width: 18%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .editButton {
   padding: 0;
   border: none;
@@ -254,8 +269,15 @@ main {
   }
 
   #clock {
-
     font-size: 15px;
+  }
+
+  .todo-count {
+    padding: 5px; 
+    border-radius: 100%; 
+    width: 20%;
+    height: 20%;
+    font-size: 14px;
   }
 }
 
@@ -296,6 +318,14 @@ main {
   #clock {
     font-size: 12px;
   }
+
+  .todo-count {
+    padding: 5px; 
+    border-radius: 100%; 
+    width: 25%;
+    height: 25%;
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 768px) and (min-width: 500px) {
@@ -317,6 +347,13 @@ main {
   }
   .stuff-to-do {
     font-size: 0.8rem;
+  }
+  .todo-count {
+    padding: 5px; 
+    border-radius: 100%; 
+    width: 25%;
+    height: 20%;
+    font-size: 12px;
   }
 }
 
@@ -383,5 +420,16 @@ main {
 
   .calendar .days li {
     padding-top: 0.74rem;
+  }
+
+  .todo-count {
+    padding: 5px; 
+    border-radius: 100%; 
+    width: 20%;
+    height: 20%;
+    font-size: 6px;
+    bottom: 5px;
+    right: 10px;
+    font-weight: 500;
   }
 }
