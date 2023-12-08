@@ -51,7 +51,6 @@ const renderCalendar = () => {
       currYear === new Date().getFullYear()
         ? "active"
         : "";
-
     let targetDate = `${currYear}-${(currMonth + 1).toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`;
     let todosForDate = getTodosForDate(targetDate);
     let todoCountElement = "";
@@ -60,11 +59,10 @@ const renderCalendar = () => {
       todoCountElement = `<div class="todo-count" data-cy="calendar-cell-todos">${todosForDate.length}</div>`;
     }
 
-    liTag += `<li class="${isToday}" data-cy="calendar-cell">
+    liTag += `<li class="${isToday}" data-cy="calendar-cell" onclick="filterEvents(${i})">
                   <span data-cy="calendar-cell-date">${i}</span>
                   ${todoCountElement}
                </li>`;
-    liTag += `<li class="${isToday}" data-cy="calendar-cell" onclick="filterEvents(${i})"><span data-cy="calendar-cell-date">${i}</span></li>`;
   }
 
   for (let i = lastDayofMonth; i < 6; i++) {
