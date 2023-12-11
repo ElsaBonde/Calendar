@@ -154,6 +154,7 @@ function updateEventInLocalStorage(e) {
 // Function to load todos from local storage and update the list on page load
 function loadEvents() {
 	var existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
+  sortList(existingEvents);
 	updateEventList(existingEvents);
 }
 
