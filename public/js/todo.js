@@ -36,7 +36,6 @@ function addEvent(e) {
 		id: title + date + time, //create an id for the event
 	};
 
-	var existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
 	existingEvents.push(newEvent);
 
 	localStorage.setItem("todos", JSON.stringify(existingEvents));
@@ -107,8 +106,6 @@ function handleEditClick(todo) {
 
 // delete function
 function handleDeleteClick(todoToRemove) {
-  // const index = todos.indexOf(todoToRemove)
-  // todos.splice(index, 1) // Remove the event from the array
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   todos = todos.filter(todo => todo.id !== todoToRemove.id)
 	localStorage.setItem("todos", JSON.stringify(todos));
@@ -134,7 +131,6 @@ function updateListIdById(dataList, idToUpdate, newValues) {
 
 function updateEventInLocalStorage(e) {
 	e.preventDefault();
-	const existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
 	const updatedTitle = document.getElementById("titleToDo").value;
 	const updatedDate = document.getElementById("dateToDo").value;
 	const updatedTime = document.getElementById("timeToDo").value;
@@ -153,7 +149,6 @@ function updateEventInLocalStorage(e) {
 
 // Function to load todos from local storage and update the list on page load
 function loadEvents() {
-	var existingEvents = JSON.parse(localStorage.getItem("todos")) || [];
   sortList(existingEvents);
 	updateEventList(existingEvents);
 }
