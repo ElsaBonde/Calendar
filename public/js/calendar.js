@@ -106,18 +106,6 @@ function handleMonthChange() {
 	loadEvents();
 }
 
-function filterEvents(day) {
-	const filteredEvents = existingEvents.filter((todo) => {
-		const eventDate = new Date(todo.date);
-		return (
-			eventDate.getDate() === day &&
-			eventDate.getMonth() === currMonth &&
-			eventDate.getFullYear() === currYear
-		);
-	});
-	displayFilteredEvents(filteredEvents);
-}
-
 function displayFilteredEvents(filteredEvents) {
 	const todayContainer = document.querySelector(".today-container");
 	const eventList = todayContainer.querySelector("#eventList");
