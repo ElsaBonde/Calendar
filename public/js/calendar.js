@@ -109,45 +109,50 @@ function handleMonthChange() {
 function displayFilteredEvents(filteredEvents) {
 	const todayContainer = document.querySelector(".today-container");
 	const eventList = todayContainer.querySelector("#eventList");
-	eventList.innerHTML = ""; // Clear existing content
+	eventList.innerHTML = ""; //clear existing content
 
 	filteredEvents.forEach(function (event) {
-		var listItem = document.createElement("li");
+		const listItem = document.createElement("li");
 
-		var eventInfo = document.createElement("span");
+		const eventInfo = document.createElement("span");
 		eventInfo.className = "liEvents";
 		eventInfo.textContent = `${event.date} at ${event.time}\r\n${event.title}`;
-
 		listItem.appendChild(eventInfo);
 
-		const editButton = document.createElement("button");
-		editButton.setAttribute("data-cy", "edit-todo-button");
-		editButton.className = "editButton";
-		editButton.innerHTML =
-			'<i class="far fa-pen-to-square" style="color: #000000;"></i>';
-		listItem.appendChild(editButton);
+		const editButton = createEditButton(event);
+		const deleteButton = createDeleteButton(event);
 
-		const deleteButton = document.createElement("button");
-		deleteButton.setAttribute("data-cy", "delete-todo-button");
-		deleteButton.className = "deleteButton";
-		deleteButton.innerHTML =
-			'<i class="fa-regular fa-trash-can" style="color: #000000;"></i>';
+		listItem.appendChild(editButton);
 		listItem.appendChild(deleteButton);
 
 		eventList.appendChild(listItem);
 	});
+}
 
-	// Add event listeners for edit and delete buttons here
-	eventList.addEventListener("click", function (event) {
-		const editButton = event.target.closest(".editButton");
-		const deleteButton = event.target.closest(".deleteButton");
-
-		if (editButton) {
-			handleEditClick(event, existingEvents);
-		} else if (deleteButton) {
-			handleDeleteClick(event, existingEvents);
-		}
+//edit-knappen
+function createEditButton(event) {
+	const editButton = document.createElement("button");
+	editButton.setAttribute("data-cy", "edit-todo-button");
+	editButton.className = "editButton";
+	editButton.innerHTML =
+		'<i class="far fa-pen-to-square" style="color: #000000;"></i>';
+	editButton.addEventListener("click", () => {
+		handleEditClick(event);
 	});
+	return editButton;
+}
+
+//delete-knappen
+function createDeleteButton(event) {
+	const deleteButton = document.createElement("button");
+	deleteButton.setAttribute("data-cy", "delete-todo-button");
+	deleteButton.className = "deleteButton";
+	deleteButton.innerHTML =
+		'<i class="fa-regular fa-trash-can" style="color: #000000;"></i>';
+	deleteButton.addEventListener("click", () => {
+		handleDeleteClick(event);
+	});
+	return deleteButton;
 }
 let selectedDay = null; // Track the selected day
 
