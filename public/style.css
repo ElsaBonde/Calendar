@@ -334,6 +334,9 @@ main {
     flex-direction: column;
     row-gap: 1rem;
   }
+  .today-container {
+    margin-top: 1rem;
+  }
   aside {
     order: 3;
   }
@@ -361,6 +364,9 @@ main {
   .activeMonth {
     margin-left: 2rem;
     margin-right: 2rem;
+  }
+  .today-container {
+    margin-top: 1rem;
   }
   .container-grid {
     display: flex;
