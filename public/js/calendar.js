@@ -154,6 +154,7 @@ function createDeleteButton(event) {
 	});
 	return deleteButton;
 }
+
 let selectedDay = null; // Track the selected day
 
 function filterEvents(day) {

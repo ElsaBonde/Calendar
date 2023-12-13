@@ -107,10 +107,30 @@ function handleEditClick(todo) {
 // delete function
 function handleDeleteClick(todoToRemove) {
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
-  todos = todos.filter(todo => todo.id !== todoToRemove.id)
-	localStorage.setItem("todos", JSON.stringify(todos));
-	updateEventList(todos);
-	renderCalendar();
+  todos = todos.filter(todo => todo.id !== todoToRemove.id);
+
+  // Uppdatera existingEvents med de uppdaterade händelserna efter borttagning
+  existingEvents = todos;
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+
+  //uppdatera hur listan displayar baserat på vald dag
+  if (selectedDay !== null) {
+      const filteredEvents = existingEvents.filter((event) => {
+          const eventDate = new Date(event.date);
+          return (
+              eventDate.getDate() === selectedDay &&
+              eventDate.getMonth() === currMonth &&
+              eventDate.getFullYear() === currYear
+          );
+      });
+
+      displayFilteredEvents(filteredEvents);
+  } else {
+      updateEventList(existingEvents);
+  }
+
+  renderCalendar();
 }
 
 function fillEditModal(selectedEvent) {
@@ -148,10 +168,30 @@ function updateEventInLocalStorage(e) {
 }
 
 // Function to load todos from local storage and update the list on page load
-function loadEvents() {
+/* function loadEvents() {
   sortList(existingEvents);
 	updateEventList(existingEvents);
+} */
+
+function loadEvents() {
+  sortList(existingEvents);
+
+  if (selectedDay !== null) {
+      const filteredEvents = existingEvents.filter((event) => {
+          const eventDate = new Date(event.date);
+          return (
+              eventDate.getDate() === selectedDay &&
+              eventDate.getMonth() === currMonth &&
+              eventDate.getFullYear() === currYear
+          );
+      });
+
+      displayFilteredEvents(filteredEvents);
+  } else {
+      updateEventList(existingEvents);
+  }
 }
+
 
 window.onload = function () {
 	loadEvents();
