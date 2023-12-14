@@ -2,8 +2,8 @@
   "tests": [
     {
       "name": "Krav G",
-      "setup": "exit 1 && npm install",
-      "run": "npm test -- --run",
+      "setup": "npm install",
+      "run": "npm test -- --run .g.",
       "input": "",
       "output": "",
       "comparison": "exact",
